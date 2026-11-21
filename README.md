@@ -4,33 +4,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123d2b">
-<meta name="description" content="SIRAMIX - Smart Automatic Fertilization System untuk pemantauan dan pengelolaan pertanian.">
 <title>SIRAMIX | Smart Agriculture System</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --green: #176b45;
-  --green-dark: #103d2b;
-  --green-light: #e8f5ec;
-  --bg: #f4f8f5;
+  --green: #174f38;
+  --green2: #246b4b;
+  --lime: #b9e769;
+  --bg: #f3f7f2;
   --white: #ffffff;
   --text: #20372b;
   --muted: #829187;
-  --border: #e5eee7;
-  --orange: #e99b38;
-  --red: #d85b5b;
-  --shadow: 0 8px 25px rgba(25, 75, 48, .06);
+  --border: #e6ede7;
+  --red: #e56b65;
+  --yellow: #e9b84d;
+  --shadow: 0 10px 30px rgba(29, 75, 49, .06);
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -43,104 +43,122 @@ button {
   cursor: pointer;
 }
 
-.layout {
+.app {
+  display: flex;
   min-height: 100vh;
 }
 
 /* SIDEBAR */
-
 .sidebar {
-  position: fixed;
-  inset: 0 auto 0 0;
   width: 250px;
-  padding: 25px 18px;
-  background: var(--green-dark);
+  background: var(--green);
   color: white;
-  z-index: 20;
-  overflow-y: auto;
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  min-height: 100vh;
 }
 
-.logo {
+.brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 25px;
-  font-weight: 800;
-  margin-bottom: 8px;
+  gap: 11px;
+  padding: 0 10px;
+  margin-bottom: 38px;
 }
 
-.logo-icon {
-  width: 42px;
-  height: 42px;
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: var(--lime);
+  color: var(--green);
   display: grid;
   place-items: center;
-  border-radius: 13px;
-  background: rgba(255,255,255,.13);
+  font-size: 23px;
 }
 
-.logo-subtitle {
-  color: #a9cbb6;
-  font-size: 11px;
-  margin: 0 0 35px 52px;
+.brand h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 21px;
+  letter-spacing: 1px;
 }
 
-.menu-title {
-  color: #9bbba7;
+.brand small {
+  display: block;
   font-size: 10px;
-  letter-spacing: 2px;
-  margin: 22px 12px 12px;
+  color: #b8d0c0;
+  letter-spacing: 1.5px;
+}
+
+.nav-label {
+  color: #9db9a7;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 0 12px;
+  margin: 12px 0;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .nav-item {
+  border: none;
+  background: transparent;
+  color: #d0e0d5;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 13px;
   padding: 13px 14px;
-  margin: 5px 0;
-  border-radius: 10px;
-  color: #d6e8dc;
-  font-size: 13px;
-  text-decoration: none;
-  border: 0;
-  background: transparent;
-  width: 100%;
+  border-radius: 12px;
   text-align: left;
+  font-size: 13px;
   transition: .2s;
 }
 
 .nav-item:hover,
 .nav-item.active {
-  background: #287b53;
-  color: white;
+  background: #ffffff1b;
+  color: var(--lime);
 }
 
 .nav-icon {
+  font-size: 18px;
   width: 22px;
   text-align: center;
-  font-size: 17px;
-}
-
-.nav-link {
-  border: 1px solid #4d8063;
-  margin-top: 20px;
 }
 
 .sidebar-bottom {
-  margin-top: 35px;
+  margin-top: auto;
+  background: #ffffff12;
+  border: 1px solid #ffffff1c;
   padding: 15px;
-  border-radius: 12px;
-  background: rgba(255,255,255,.08);
+  border-radius: 14px;
+}
+
+.sidebar-bottom p {
   font-size: 11px;
-  line-height: 1.7;
-  color: #c5dfce;
+  color: #c2d8c9;
+  line-height: 1.6;
+}
+
+.sidebar-bottom strong {
+  display: block;
+  color: var(--lime);
+  font-size: 13px;
+  margin-bottom: 5px;
 }
 
 /* MAIN */
-
 .main {
-  margin-left: 250px;
-  padding: 28px 35px;
-  min-height: 100vh;
+  flex: 1;
+  min-width: 0;
+  padding: 28px 34px 45px;
 }
 
 .topbar {
@@ -151,37 +169,45 @@ button {
   margin-bottom: 28px;
 }
 
-.topbar h2 {
-  font-size: 23px;
+.page-title h1 {
+  font-family: Manrope, sans-serif;
+  font-size: 25px;
+  font-weight: 800;
 }
 
-.topbar p {
+.page-title p {
   color: var(--muted);
   font-size: 12px;
   margin-top: 5px;
 }
 
-.system-status {
+.top-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: #e5f5e9;
-  color: #187044;
-  padding: 9px 14px;
-  border-radius: 30px;
-  font-size: 11px;
-  font-weight: 700;
+  gap: 12px;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #35aa64;
+.date-label {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 11px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.profile {
+  width: 39px;
+  height: 39px;
   border-radius: 50%;
+  background: #dcebcf;
+  color: var(--green);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
 }
 
 /* PAGE */
-
 .page {
   display: none;
   animation: appear .25s ease;
@@ -196,1452 +222,1971 @@ button {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.page-heading {
-  margin: 25px 0 18px;
-  font-size: 20px;
-}
-
+/* HERO */
 .hero {
-  position: relative;
-  overflow: hidden;
-  padding: 38px;
-  border-radius: 20px;
-  background: linear-gradient(120deg, #104c31, #31935a);
+  background: linear-gradient(110deg, #174f38, #2e7651);
   color: white;
-  margin-bottom: 25px;
+  padding: 29px 32px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 23px;
 }
 
 .hero::after {
-  content: "🌿";
+  content: "🌱";
   position: absolute;
-  right: 35px;
-  bottom: -20px;
-  font-size: 115px;
-  opacity: .14;
+  right: 10%;
+  top: -35px;
+  font-size: 150px;
+  opacity: .12;
+  transform: rotate(-15deg);
 }
 
-.hero h1 {
-  font-size: 30px;
-  margin-bottom: 13px;
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-tag {
+  display: inline-block;
+  color: var(--lime);
+  background: #ffffff17;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.hero h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 25px;
+  margin-bottom: 9px;
 }
 
 .hero p {
-  max-width: 650px;
-  color: #e0f2e5;
-  font-size: 13px;
-  line-height: 1.9;
+  font-size: 12px;
+  color: #d2e5d8;
+  max-width: 510px;
+  line-height: 1.7;
 }
 
 .hero-button {
-  margin-top: 20px;
-  padding: 12px 19px;
-  background: white;
-  color: var(--green);
+  position: relative;
+  z-index: 1;
   border: none;
-  border-radius: 9px;
-  font-weight: 700;
+  background: var(--lime);
+  color: var(--green);
+  font-weight: 800;
+  font-size: 12px;
+  padding: 12px 17px;
+  border-radius: 10px;
+  white-space: nowrap;
 }
 
 /* CARDS */
-
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 22px;
 }
 
-.card,
-.panel {
+.card {
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 15px;
-  padding: 21px;
+  border-radius: 16px;
+  padding: 19px;
   box-shadow: var(--shadow);
 }
 
-.card {
-  transition: .2s;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-.card-icon {
-  width: 43px;
-  height: 43px;
-  display: grid;
-  place-items: center;
-  border-radius: 13px;
-  background: var(--green-light);
-  font-size: 21px;
+.metric-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 15px;
 }
 
-.card small {
-  color: var(--muted);
+.metric-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #edf6e8;
+  font-size: 19px;
+}
+
+.metric-name {
   font-size: 11px;
-}
-
-.card h3 {
-  font-size: 14px;
-  margin-bottom: 7px;
-}
-
-.card p {
-  font-size: 12px;
-  line-height: 1.7;
   color: var(--muted);
+  font-weight: 700;
 }
 
-.value {
-  font-size: 27px;
+.metric-value {
+  font-family: Manrope, sans-serif;
+  font-size: 26px;
   font-weight: 800;
-  margin: 8px 0;
 }
 
-.card-status {
-  font-size: 11px;
-  color: var(--green);
+.metric-unit {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
 }
 
-/* PANEL */
-
-.panel {
-  margin-bottom: 18px;
+.metric-note {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 8px;
 }
 
-.panel h3 {
-  font-size: 15px;
-  margin-bottom: 16px;
-}
-
-.panel-description {
-  font-size: 13px;
-  line-height: 1.8;
-  color: #68796e;
-}
-
-.panel-header {
+.section-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 15px;
+  margin: 26px 0 15px;
 }
 
-/* BUTTON */
+.section-heading h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 16px;
+}
 
-.btn {
-  border: 0;
-  padding: 11px 17px;
-  border-radius: 9px;
-  background: var(--green);
-  color: white;
+.section-heading p {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* PANEL */
+.two-column {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 17px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 21px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+
+.panel h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.panel-subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 19px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.status-row:last-child {
+  border-bottom: none;
+}
+
+.status-row span:first-child {
   font-size: 12px;
-  font-weight: 700;
-  transition: .2s;
 }
 
-.btn:hover {
-  background: #105436;
-  transform: translateY(-1px);
+.status-pill {
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #edf7e8;
+  color: #4e8a47;
+  font-size: 10px;
+  font-weight: 800;
 }
 
-.btn-light {
-  background: #e8f5ec;
-  color: var(--green);
+.status-pill.warning {
+  background: #fff4dc;
+  color: #b17d21;
 }
 
-.btn-light:hover {
-  background: #d7ecdd;
-}
-
-.btn-danger {
-  background: var(--red);
-}
-
-.btn-off {
-  background: #e6ece7;
-  color: #526257;
-}
-
-.btn-off:hover {
-  background: #d8e2da;
+.status-pill.danger {
+  background: #ffeded;
+  color: #c45c56;
 }
 
 /* FORM */
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 15px;
-  margin-bottom: 17px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .field label {
-  display: block;
-  font-size: 12px;
+  font-size: 11px;
+  color: #607267;
   font-weight: 700;
-  margin-bottom: 7px;
 }
 
 .field input,
-.field select,
-.control-input {
+.field select {
   width: 100%;
-  padding: 11px;
-  border: 1px solid #dce7de;
-  border-radius: 9px;
-  background: white;
-  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
   outline: none;
-  font-size: 13px;
+  background: #fbfdfb;
+  color: var(--text);
+  font-size: 12px;
 }
 
 .field input:focus,
-.field select:focus,
-.control-input:focus {
-  border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(23,107,69,.08);
+.field select:focus {
+  border-color: #7ebd69;
+  box-shadow: 0 0 0 3px #b9e76930;
 }
 
-.note {
-  color: var(--muted);
-  font-size: 11px;
-  line-height: 1.7;
-  margin-top: 13px;
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 17px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: .2s;
 }
 
-.data-card {
-  background: #f8fbf8;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 17px;
+.primary-btn {
+  background: var(--green);
+  color: white;
 }
 
-.data-card b {
-  display: block;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: .5px;
+.primary-btn:hover {
+  background: var(--green2);
 }
 
-.data-card strong {
-  display: block;
-  font-size: 22px;
-  margin-top: 9px;
+.secondary-btn {
+  background: #edf5e8;
+  color: var(--green);
 }
 
-/* CONTROL */
+.danger-btn {
+  background: #ffeded;
+  color: #bb5650;
+}
 
-.control-row {
+.form-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  padding: 15px 0;
-  border-bottom: 1px solid #edf1ed;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.control-row:last-child {
-  border-bottom: none;
+/* MONITORING */
+.monitor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
 }
 
-.control-row b {
-  font-size: 13px;
+.monitor-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 18px;
 }
 
-.control-row p {
-  color: var(--muted);
+.monitor-card .label {
   font-size: 11px;
-  margin-top: 5px;
-  line-height: 1.5;
+  color: var(--muted);
 }
 
-.control-row select,
-.control-row input {
-  max-width: 155px;
+.monitor-card .value {
+  font-family: Manrope, sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 8px 0;
 }
 
-/* PROGRESS */
-
-.progress-track {
-  height: 9px;
-  background: #e8eee9;
+.progress {
+  width: 100%;
+  height: 7px;
+  background: #edf2ed;
   border-radius: 20px;
   overflow: hidden;
   margin-top: 12px;
 }
 
-.progress-fill {
+.progress-bar {
   height: 100%;
-  width: 65%;
-  background: linear-gradient(90deg, #258452, #66bd7d);
+  width: 0;
+  background: #83bd65;
   border-radius: 20px;
   transition: width .3s;
 }
 
-/* TABLE */
+/* CONTROL */
+.control-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
 
+.control-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.control-header h3 {
+  font-family: Manrope, sans-serif;
+  font-size: 15px;
+}
+
+.control-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: #edf6e8;
+  display: grid;
+  place-items: center;
+  font-size: 21px;
+}
+
+.control-description {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.control-status {
+  background: #f5f8f4;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 14px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.switch-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: var(--muted);
+  margin: 14px 0;
+}
+
+.switch-row input {
+  accent-color: var(--green);
+}
+
+.control-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+/* TABLE */
 .table-wrap {
+  width: 100%;
   overflow-x: auto;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 450px;
-  font-size: 12px;
+  min-width: 600px;
 }
 
 th, td {
+  padding: 13px 12px;
   text-align: left;
-  padding: 13px 10px;
-  border-bottom: 1px solid #edf1ed;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
 }
 
 th {
   color: var(--muted);
-  font-size: 11px;
+  font-weight: 800;
+  background: #f8faf7;
 }
 
-.tag {
-  display: inline-block;
-  padding: 5px 9px;
-  border-radius: 20px;
-  background: #e6f5e9;
-  color: #187044;
-  font-size: 10px;
-  font-weight: 700;
+td {
+  color: #43584a;
 }
 
 /* NOTIFICATION */
-
 .notification {
-  padding: 14px;
-  background: #f0f7f1;
-  border: 1px solid #e2eee4;
-  border-radius: 10px;
+  display: flex;
+  gap: 13px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.notification:last-child {
+  border-bottom: none;
+}
+
+.notification-icon {
+  width: 37px;
+  height: 37px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #edf6e8;
+  display: grid;
+  place-items: center;
+}
+
+.notification h4 {
   font-size: 12px;
-  margin-bottom: 10px;
-  line-height: 1.7;
+  margin-bottom: 4px;
+}
+
+.notification p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
 /* ABOUT */
-
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
-.about-box {
-  padding: 22px;
-  background: #eaf5ed;
-  border-radius: 13px;
+.about-highlight {
+  background: linear-gradient(135deg, #174f38, #367c52);
+  color: white;
+  border-radius: 17px;
+  padding: 25px;
 }
 
-.about-box h3 {
-  color: var(--green);
-  font-size: 14px;
-  margin-bottom: 10px;
+.about-highlight h2 {
+  font-family: Manrope, sans-serif;
+  font-size: 23px;
+  margin-bottom: 12px;
 }
 
-.about-box p {
+.about-highlight p {
   font-size: 12px;
   line-height: 1.8;
-  color: #536b5a;
+  color: #d4e5d9;
 }
 
-footer {
+.about-text {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #65766b;
+}
+
+.feature-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 10px;
+  font-size: 12px;
+  align-items: center;
+}
+
+.feature-item span:first-child {
+  width: 27px;
+  height: 27px;
+  background: #edf6e8;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+}
+
+/* EMPTY */
+.empty {
   text-align: center;
   color: var(--muted);
-  font-size: 11px;
-  padding: 35px 10px 15px;
+  font-size: 12px;
+  padding: 28px 10px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  background: var(--green);
+  color: white;
+  padding: 13px 18px;
+  border-radius: 11px;
+  font-size: 12px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: .25s;
+  z-index: 99;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer {
+  text-align: center;
+  font-size: 10px;
+  color: #9aa99e;
+  margin-top: 35px;
 }
 
 /* MOBILE */
+.mobile-menu {
+  display: none;
+  border: none;
+  background: var(--green);
+  color: white;
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-size: 17px;
+}
 
-@media(max-width:1000px) {
+@media (max-width: 1050px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .main {
-    padding: 25px;
-  }
 }
 
-@media(max-width:650px) {
+@media (max-width: 800px) {
   .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    padding: 15px;
+    position: fixed;
+    z-index: 50;
+    left: -260px;
+    top: 0;
+    height: 100vh;
+    transition: .25s;
   }
 
-  .logo {
-    font-size: 21px;
-  }
-
-  .logo-subtitle {
-    margin-bottom: 15px;
-  }
-
-  .menu-title,
-  .sidebar-bottom {
-    display: none;
-  }
-
-  .nav-list {
-    display: flex;
-    overflow-x: auto;
-    gap: 5px;
-    padding-bottom: 5px;
-  }
-
-  .nav-item {
-    width: auto;
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding: 11px 13px;
+  .sidebar.open {
+    left: 0;
   }
 
   .main {
-    margin: 0;
-    padding: 18px 14px;
+    padding: 20px 16px 35px;
+    width: 100%;
   }
 
-  .topbar h2 {
-    font-size: 19px;
+  .mobile-menu {
+    display: block;
   }
 
-  .system-status {
-    font-size: 9px;
-    padding: 8px;
-  }
-
-  .hero {
-    padding: 25px 20px;
-  }
-
-  .hero h1 {
-    font-size: 24px;
-  }
-
-  .hero::after {
-    font-size: 75px;
-    right: 12px;
-  }
-
-  .grid,
-  .form-grid,
+  .two-column,
+  .control-grid,
   .about-grid {
     grid-template-columns: 1fr;
   }
 
-  .card,
-  .panel {
-    padding: 17px;
+  .form-grid,
+  .monitor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .control-row {
+  .hero {
+    padding: 24px;
+  }
+
+  .hero h2 {
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 520px) {
+  .topbar {
     align-items: flex-start;
   }
 
-  .control-row select,
-  .control-row input {
-    max-width: 125px;
+  .page-title h1 {
+    font-size: 20px;
+  }
+
+  .date-label {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .metric-value {
+    font-size: 21px;
+  }
+
+  .form-grid,
+  .monitor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    display: block;
+  }
+
+  .hero-button {
+    margin-top: 17px;
   }
 }
 </style>
 </head>
 
 <body>
+<div class="app">
 
-<div class="layout">
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="logo">
-    <div class="logo-icon">🌱</div>
-    SIRAMIX
-  </div>
-  <div class="logo-subtitle">SMART AGRICULTURE SYSTEM</div>
-
-  <div class="menu-title">MENU UTAMA</div>
-
-  <nav class="nav-list">
-    <button class="nav-item active" data-page="home"><span class="nav-icon">⌂</span> Beranda</button>
-    <button class="nav-item" data-page="dashboard"><span class="nav-icon">▦</span> Dashboard</button>
-    <button class="nav-item" data-page="monitoring"><span class="nav-icon">◉</span> Monitoring Sensor</button>
-    <button class="nav-item" data-page="pupuk"><span class="nav-icon">🌿</span> Pemupukan</button>
-    <button class="nav-item" data-page="penyiraman"><span class="nav-icon">💧</span> Penyiraman Air</button>
-    <button class="nav-item" data-page="riwayat"><span class="nav-icon">▤</span> Riwayat</button>
-    <button class="nav-item" data-page="notifikasi"><span class="nav-icon">♧</span> Notifikasi</button>
-    <button class="nav-item" data-page="about"><span class="nav-icon">ⓘ</span> Tentang Kami</button>
-    <a class="nav-item nav-link" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer">
-      <span class="nav-icon">🤖</span> SIRAMIX AI ↗
-    </a>
-  </nav>
-
-  <div class="sidebar-bottom">
-    <b>SIRAMIX SYSTEM</b><br>
-    Mendukung pertanian yang lebih cerdas, efisien, dan berkelanjutan.
-  </div>
-</aside>
-
-<!-- MAIN -->
-<main class="main">
-
-<header class="topbar">
-  <div>
-    <h2 id="pageTitle">Beranda</h2>
-    <p>Smart Automatic Fertilization System</p>
-  </div>
-  <div class="system-status">
-    <span class="status-dot"></span>
-    MODE DEMONSTRASI
-  </div>
-</header>
-
-<!-- BERANDA -->
-<section class="page active" id="home">
-
-  <div class="hero">
-    <h1>Welcome to SIRAMIX 🌱</h1>
-    <p>
-      SIRAMIX merupakan inovasi teknologi pertanian yang mengintegrasikan
-      pemantauan kondisi tanah, pengaturan pemupukan, dan penyiraman air
-      secara otomatis. Sistem ini dirancang untuk membantu pengelolaan
-      lahan melalui data sensor dan mikrokontroler ESP32 sehingga
-      penggunaan air serta pupuk dapat dilakukan secara lebih terarah.
-    </p>
-    <button class="hero-button" data-go="dashboard">Buka Dashboard →</button>
-  </div>
-
-  <h2 class="page-heading">Fitur Utama</h2>
-
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">🌱</div>
-      <h3>Pemupukan Otomatis</h3>
-      <p>Pengaturan pemberian pupuk berdasarkan kebutuhan dan kondisi tanah.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">💧</div>
-      <h3>Penyiraman Otomatis</h3>
-      <p>Pengaturan penyiraman berdasarkan tingkat kelembapan tanah.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">📡</div>
-      <h3>Monitoring Sensor</h3>
-      <p>Pemantauan unsur hara, suhu, pH, dan kelembapan tanah.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🤖</div>
-      <h3>Analisis AI</h3>
-      <p>Data kondisi tanah dapat disalin untuk memperoleh analisis melalui ChatGPT.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">📋</div>
-      <h3>Riwayat Aktivitas</h3>
-      <p>Pencatatan aktivitas pemupukan dan penyiraman dalam sistem.</p>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🔔</div>
-      <h3>Notifikasi</h3>
-      <p>Informasi mengenai kondisi dan aktivitas sistem.</p>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3>Tujuan Pengembangan</h3>
-    <p class="panel-description">
-      SIRAMIX dikembangkan untuk mendukung penerapan pertanian cerdas
-      melalui pengelolaan air dan pupuk yang lebih terukur. Integrasi
-      monitoring sensor dan sistem otomatis diharapkan dapat membantu
-      pengguna menentukan tindakan berdasarkan kondisi lahan.
-    </p>
-  </div>
-</section>
-
-<!-- DASHBOARD -->
-<section class="page" id="dashboard">
-  <h2 class="page-heading">Dashboard Monitoring</h2>
-
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">🌡️</div>
-      <small>Suhu Tanah</small>
-      <div class="value" id="dashTemp">28°C</div>
-      <span class="card-status">Data demonstrasi</span>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">💧</div>
-      <small>Kelembapan Tanah</small>
-      <div class="value" id="dashMoisture">65%</div>
-      <span class="card-status">Data demonstrasi</span>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🌿</div>
-      <small>Status Pemupukan</small>
-      <div class="value" id="dashFert">OFF</div>
-      <span class="card-status">Pompa pupuk</span>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🚿</div>
-      <small>Status Penyiraman</small>
-      <div class="value" id="dashWater">OFF</div>
-      <span class="card-status">Pompa air</span>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3>Kondisi Kelembapan Tanah</h3>
-    <div class="panel-header">
-      <span class="panel-description">Nilai kelembapan saat ini</span>
-      <b id="dashMoistureLabel">65%</b>
-    </div>
-    <div class="progress-track">
-      <div class="progress-fill" id="moistureBar"></div>
-    </div>
-    <p class="note">Nilai kelembapan merupakan data demonstrasi yang dapat diubah melalui menu Monitoring Sensor.</p>
-  </div>
-
-  <div class="panel">
-    <h3>Informasi Sistem</h3>
-    <p class="panel-description">
-      Website ini merupakan antarmuka demonstrasi. Data dan tombol kontrol
-      belum mengaktifkan perangkat fisik ESP32, sensor, relay, maupun pompa.
-    </p>
-  </div>
-</section>
-
-<!-- MONITORING -->
-<section class="page" id="monitoring">
-  <h2 class="page-heading">Monitoring Sensor dan Unsur Hara</h2>
-
-  <div class="panel">
-    <h3>Input Data Kondisi Tanah</h3>
-
-    <div class="form-grid">
-      <div class="field">
-        <label for="nitrogen">Nitrogen (N) — mg/kg</label>
-        <input id="nitrogen" type="number" min="0" step="any" value="45">
-      </div>
-
-      <div class="field">
-        <label for="phosphorus">Fosfor (P) — mg/kg</label>
-        <input id="phosphorus" type="number" min="0" step="any" value="30">
-      </div>
-
-      <div class="field">
-        <label for="potassium">Kalium (K) — mg/kg</label>
-        <input id="potassium" type="number" min="0" step="any" value="35">
-      </div>
-
-      <div class="field">
-        <label for="soilPH">pH Tanah</label>
-        <input id="soilPH" type="number" min="0" max="14" step="0.1" value="6.5">
-      </div>
-
-      <div class="field">
-        <label for="soilTemperature">Suhu Tanah (°C)</label>
-        <input id="soilTemperature" type="number" min="0" step="any" value="28">
-      </div>
-
-      <div class="field">
-        <label for="soilMoisture">Kelembapan Tanah (%)</label>
-        <input id="soilMoisture" type="number" min="0" max="100" step="any" value="65">
-      </div>
-    </div>
-
-    <div class="field" style="max-width:400px;margin-bottom:17px">
-      <label for="plantType">Jenis Tanaman</label>
-      <input id="plantType" type="text" placeholder="Contoh: cabai, jagung, tomat">
-    </div>
-
-    <button class="btn" id="updateMonitoring">Perbarui Data</button>
-
-    <p class="note">
-      Data awal merupakan contoh demonstrasi. Masukkan hasil pengukuran
-      tanah yang sebenarnya untuk memperoleh informasi yang lebih relevan.
-    </p>
-  </div>
-
-  <h3 class="page-heading">Hasil Monitoring</h3>
-
-  <div class="grid">
-    <div class="data-card"><b>NITROGEN (N)</b><strong id="showN">45 mg/kg</strong></div>
-    <div class="data-card"><b>FOSFOR (P)</b><strong id="showP">30 mg/kg</strong></div>
-    <div class="data-card"><b>KALIUM (K)</b><strong id="showK">35 mg/kg</strong></div>
-    <div class="data-card"><b>pH TANAH</b><strong id="showPH">6.5</strong></div>
-    <div class="data-card"><b>SUHU TANAH</b><strong id="showTemp">28 °C</strong></div>
-    <div class="data-card"><b>KELEMBAPAN</b><strong id="showMoisture">65%</strong></div>
-  </div>
-
-  <div class="panel">
-    <h3>🤖 Analisis Data Menggunakan AI</h3>
-    <p class="panel-description">
-      Salin data monitoring beserta pertanyaan analisis. Setelah itu,
-      buka ChatGPT dan tempelkan data tersebut untuk memperoleh penjelasan
-      mengenai kondisi tanah, unsur hara, serta kebutuhan penyiraman.
-    </p>
-    <br>
-    <button class="btn" id="copyAI">📋 Salin Data untuk AI</button>
-    <p class="note" id="copyStatus" aria-live="polite"></p>
-    <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" style="color:var(--green);font-size:12px;font-weight:bold">
-      Buka ChatGPT ↗
-    </a>
-  </div>
-</section>
-
-<!-- PEMUPUKAN -->
-<section class="page" id="pupuk">
-  <h2 class="page-heading">Kontrol Pemupukan</h2>
-
-  <div class="panel">
-    <h3>Pengaturan Sistem Pemupukan</h3>
-
-    <div class="control-row">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🌱</div>
       <div>
-        <b>Mode Pemupukan</b>
-        <p>Pilih mode pengoperasian pompa pupuk.</p>
+        <h2>SIRAMIX</h2>
+        <small>SMART AGRICULTURE</small>
       </div>
-      <select class="control-input" id="fertMode" style="max-width:150px">
-        <option value="manual">Manual</option>
-        <option value="auto">Otomatis</option>
-      </select>
     </div>
 
-    <div class="control-row">
-      <div>
-        <b>Status Pompa Pupuk</b>
-        <p id="fertText">Pompa dalam keadaan mati.</p>
+    <div class="nav-label">MENU UTAMA</div>
+
+    <nav class="nav-menu">
+      <button class="nav-item active" data-page="beranda">
+        <span class="nav-icon">⌂</span> Beranda
+      </button>
+      <button class="nav-item" data-page="dashboard">
+        <span class="nav-icon">▦</span> Dashboard
+      </button>
+      <button class="nav-item" data-page="monitoring">
+        <span class="nav-icon">◉</span> Monitoring Tanah
+      </button>
+      <button class="nav-item" data-page="pemupukan">
+        <span class="nav-icon">♧</span> Pemupukan
+      </button>
+      <button class="nav-item" data-page="penyiraman">
+        <span class="nav-icon">💧</span> Penyiraman
+      </button>
+    </nav>
+
+    <div class="nav-label">LAINNYA</div>
+
+    <nav class="nav-menu">
+      <button class="nav-item" data-page="riwayat">
+        <span class="nav-icon">◷</span> Riwayat Data
+      </button>
+      <button class="nav-item" data-page="notifikasi">
+        <span class="nav-icon">♢</span> Notifikasi
+      </button>
+      <button class="nav-item" data-page="tentang">
+        <span class="nav-icon">ⓘ</span> Tentang SIRAMIX
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <strong>🌿 SIRAMIX SYSTEM</strong>
+      <p>Sistem pemantauan dan pengelolaan pertanian berbasis teknologi.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:13px">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div class="page-title">
+          <h1 id="pageHeading">Beranda</h1>
+          <p>Sistem informasi pertanian cerdas SIRAMIX</p>
+        </div>
       </div>
-      <button class="btn btn-off" id="fertButton">HIDUPKAN</button>
-    </div>
 
-    <div class="control-row">
-      <div>
-        <b>Takaran Pupuk</b>
-        <p>Pengaturan volume pupuk sesuai rancangan alat.</p>
+      <div class="top-actions">
+        <div class="date-label" id="currentDate">Memuat tanggal...</div>
+        <div class="profile">S</div>
       </div>
-      <input class="control-input" type="number" id="dose" min="1" value="100" style="max-width:150px">
-    </div>
+    </header>
 
-    <br>
-    <button class="btn" id="saveFert">Simpan Pengaturan</button>
+    <!-- BERANDA -->
+    <section class="page active" id="page-beranda">
 
-    <p class="note">
-      Mode otomatis pada versi demonstrasi hanya menggambarkan status
-      pengoperasian. Pengendalian pompa fisik membutuhkan koneksi ESP32 dan relay.
-    </p>
-  </div>
-</section>
-
-<!-- PENYIRAMAN -->
-<section class="page" id="penyiraman">
-  <h2 class="page-heading">Kontrol Penyiraman Air</h2>
-
-  <div class="panel">
-    <h3>Pengaturan Sistem Penyiraman</h3>
-
-    <div class="control-row">
-      <div>
-        <b>Mode Penyiraman</b>
-        <p>Pilih pengoperasian sistem penyiraman.</p>
+      <div class="hero">
+        <div class="hero-content">
+          <span class="hero-tag">SMART FARMING TECHNOLOGY</span>
+          <h2>Kelola Lahan Lebih Cerdas<br> Bersama SIRAMIX.</h2>
+          <p>
+            SIRAMIX merupakan sistem pertanian cerdas yang dirancang untuk
+            membantu pemantauan kondisi tanah serta pengelolaan pemupukan
+            dan penyiraman tanaman secara lebih terarah.
+          </p>
+          <button class="hero-button" onclick="goPage('dashboard')">
+            Buka Dashboard →
+          </button>
+        </div>
       </div>
-      <select class="control-input" id="waterMode" style="max-width:150px">
-        <option value="auto">Otomatis</option>
-        <option value="manual">Manual</option>
-      </select>
-    </div>
 
-    <div class="control-row">
-      <div>
-        <b>Status Pompa Air</b>
-        <p id="waterText">Pompa air dalam keadaan mati.</p>
+      <div class="grid">
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Nitrogen (N)</span>
+            <div class="metric-icon">🌿</div>
+          </div>
+          <div class="metric-value"><span id="homeN">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Data pengukuran terakhir</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Fosfor (P)</span>
+            <div class="metric-icon">🧪</div>
+          </div>
+          <div class="metric-value"><span id="homeP">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Data pengukuran terakhir</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Kalium (K)</span>
+            <div class="metric-icon">🌱</div>
+          </div>
+          <div class="metric-value"><span id="homeK">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Data pengukuran terakhir</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Kelembapan</span>
+            <div class="metric-icon">💧</div>
+          </div>
+          <div class="metric-value"><span id="homeMoisture">0</span> <span class="metric-unit">%</span></div>
+          <div class="metric-note">Kadar air tanah</div>
+        </div>
       </div>
-      <button class="btn btn-off" id="waterButton">HIDUPKAN</button>
-    </div>
 
-    <div class="control-row">
-      <div>
-        <b>Batas Kelembapan Minimum</b>
-        <p>Pompa akan aktif jika kelembapan di bawah nilai ini.</p>
+      <div class="two-column">
+        <div class="panel">
+          <h3>Ringkasan Sistem</h3>
+          <p class="panel-subtitle">Status pengelolaan lahan berdasarkan data terakhir</p>
+
+          <div class="status-row">
+            <span>Monitoring tanah</span>
+            <span class="status-pill" id="homeMonitorStatus">Belum ada data</span>
+          </div>
+          <div class="status-row">
+            <span>Sistem pemupukan</span>
+            <span class="status-pill" id="homeFertilizerStatus">Nonaktif</span>
+          </div>
+          <div class="status-row">
+            <span>Sistem penyiraman</span>
+            <span class="status-pill" id="homeWaterStatus">Nonaktif</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Informasi SIRAMIX</h3>
+          <p class="panel-subtitle">Fungsi utama sistem</p>
+          <div class="status-row">
+            <span>🌱 Pemantauan unsur hara</span>
+          </div>
+          <div class="status-row">
+            <span>💧 Pengelolaan kebutuhan air</span>
+          </div>
+          <div class="status-row">
+            <span>⚙️ Pengaturan pemupukan</span>
+          </div>
+          <div class="status-row">
+            <span>🤖 Bantuan analisis berbasis AI</span>
+          </div>
+        </div>
       </div>
-      <input class="control-input" type="number" id="moistureLimit" min="0" max="100" value="40" style="max-width:150px">
-    </div>
+    </section>
 
-    <div class="control-row">
-      <div>
-        <b>Durasi Penyiraman</b>
-        <p>Lama penyiraman dalam satu siklus (detik).</p>
+    <!-- DASHBOARD -->
+    <section class="page" id="page-dashboard">
+
+      <div class="section-heading">
+        <div>
+          <h2>Dashboard Pertanian</h2>
+          <p>Ringkasan parameter kondisi tanah</p>
+        </div>
+        <button class="secondary-btn" onclick="goPage('monitoring')">Input Data +</button>
       </div>
-      <input class="control-input" type="number" id="waterDuration" min="1" value="30" style="max-width:150px">
+
+      <div class="grid">
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Nitrogen (N)</span>
+            <div class="metric-icon">🌿</div>
+          </div>
+          <div class="metric-value"><span id="dashN">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Unsur hara nitrogen</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Fosfor (P)</span>
+            <div class="metric-icon">🧪</div>
+          </div>
+          <div class="metric-value"><span id="dashP">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Unsur hara fosfor</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Kalium (K)</span>
+            <div class="metric-icon">🌱</div>
+          </div>
+          <div class="metric-value"><span id="dashK">0</span> <span class="metric-unit">mg/kg</span></div>
+          <div class="metric-note">Unsur hara kalium</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">pH Tanah</span>
+            <div class="metric-icon">⚗️</div>
+          </div>
+          <div class="metric-value"><span id="dashPH">0</span></div>
+          <div class="metric-note">Tingkat keasaman tanah</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Suhu Tanah</span>
+            <div class="metric-icon">🌡️</div>
+          </div>
+          <div class="metric-value"><span id="dashTemp">0</span> <span class="metric-unit">°C</span></div>
+          <div class="metric-note">Temperatur tanah</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Kelembapan</span>
+            <div class="metric-icon">💧</div>
+          </div>
+          <div class="metric-value"><span id="dashMoisture">0</span> <span class="metric-unit">%</span></div>
+          <div class="metric-note">Kadar air tanah</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Pemupukan</span>
+            <div class="metric-icon">♧</div>
+          </div>
+          <div class="metric-value" style="font-size:19px" id="dashFertilizer">Nonaktif</div>
+          <div class="metric-note">Status simulasi pemupukan</div>
+        </div>
+
+        <div class="card">
+          <div class="metric-top">
+            <span class="metric-name">Penyiraman</span>
+            <div class="metric-icon">🚿</div>
+          </div>
+          <div class="metric-value" style="font-size:19px" id="dashWater">Nonaktif</div>
+          <div class="metric-note">Status simulasi penyiraman</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Informasi Pembacaan</h3>
+        <p class="panel-subtitle">Kondisi berdasarkan angka yang dimasukkan pengguna</p>
+        <div id="dashboardAnalysis" class="about-text">
+          Belum terdapat data pengukuran. Silakan masukkan data melalui menu Monitoring Tanah.
+        </div>
+      </div>
+    </section>
+
+    <!-- MONITORING -->
+    <section class="page" id="page-monitoring">
+
+      <div class="section-heading">
+        <div>
+          <h2>Monitoring Kondisi Tanah</h2>
+          <p>Masukkan hasil pengukuran parameter tanah</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Input Data Pengukuran</h3>
+        <p class="panel-subtitle">Masukkan angka sesuai hasil pembacaan sensor atau pengukuran lapangan</p>
+
+        <form id="monitorForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="inputN">Nitrogen (N) - mg/kg</label>
+              <input id="inputN" type="number" min="0" step="any" placeholder="Contoh: 45" required>
+            </div>
+
+            <div class="field">
+              <label for="inputP">Fosfor (P) - mg/kg</label>
+              <input id="inputP" type="number" min="0" step="any" placeholder="Contoh: 30" required>
+            </div>
+
+            <div class="field">
+              <label for="inputK">Kalium (K) - mg/kg</label>
+              <input id="inputK" type="number" min="0" step="any" placeholder="Contoh: 50" required>
+            </div>
+
+            <div class="field">
+              <label for="inputPH">pH Tanah</label>
+              <input id="inputPH" type="number" min="0" max="14" step="0.1" placeholder="Contoh: 6.5" required>
+            </div>
+
+            <div class="field">
+              <label for="inputTemp">Suhu Tanah (°C)</label>
+              <input id="inputTemp" type="number" min="-20" max="100" step="0.1" placeholder="Contoh: 28" required>
+            </div>
+
+            <div class="field">
+              <label for="inputMoisture">Kelembapan Tanah (%)</label>
+              <input id="inputMoisture" type="number" min="0" max="100" step="any" placeholder="Contoh: 60" required>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="primary-btn">Simpan Data Monitoring</button>
+            <button type="reset" class="secondary-btn">Reset Form</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <h2>Parameter Terukur</h2>
+          <p>Nilai terbaru yang tersimpan pada sistem</p>
+        </div>
+      </div>
+
+      <div class="monitor-grid">
+        <div class="monitor-card">
+          <div class="label">Nitrogen (N)</div>
+          <div class="value" id="monitorN">0 mg/kg</div>
+          <div class="progress"><div class="progress-bar" id="barN"></div></div>
+        </div>
+        <div class="monitor-card">
+          <div class="label">Fosfor (P)</div>
+          <div class="value" id="monitorP">0 mg/kg</div>
+          <div class="progress"><div class="progress-bar" id="barP"></div></div>
+        </div>
+        <div class="monitor-card">
+          <div class="label">Kalium (K)</div>
+          <div class="value" id="monitorK">0 mg/kg</div>
+          <div class="progress"><div class="progress-bar" id="barK"></div></div>
+        </div>
+        <div class="monitor-card">
+          <div class="label">pH Tanah</div>
+          <div class="value" id="monitorPH">0</div>
+          <div class="progress"><div class="progress-bar" id="barPH"></div></div>
+        </div>
+        <div class="monitor-card">
+          <div class="label">Suhu Tanah</div>
+          <div class="value" id="monitorTemp">0 °C</div>
+          <div class="progress"><div class="progress-bar" id="barTemp"></div></div>
+        </div>
+        <div class="monitor-card">
+          <div class="label">Kelembapan Tanah</div>
+          <div class="value" id="monitorMoisture">0%</div>
+          <div class="progress"><div class="progress-bar" id="barMoisture"></div></div>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <h2>Analisis Data dengan AI</h2>
+          <p>Salin hasil monitoring untuk digunakan dalam konsultasi AI</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Asisten Analisis Pertanian</h3>
+        <p class="panel-subtitle">
+          Data dapat disalin dan digunakan sebagai konteks pertanyaan mengenai kondisi tanah.
+        </p>
+        <div class="form-actions">
+          <button class="primary-btn" onclick="copySoilData()">Salin Data Monitoring</button>
+          <button class="secondary-btn" onclick="openAI()">Buka ChatGPT ↗</button>
+        </div>
+        <p class="metric-note" style="margin-top:13px">
+          Hasil analisis AI merupakan saran awal. Keputusan pemupukan dan penyiraman tetap perlu disesuaikan dengan jenis tanaman, fase pertumbuhan, kondisi lahan, dan rekomendasi agronomis.
+        </p>
+      </div>
+    </section>
+
+    <!-- PEMUPUKAN -->
+    <section class="page" id="page-pemupukan">
+
+      <div class="section-heading">
+        <div>
+          <h2>Pengelolaan Pemupukan</h2>
+          <p>Pengaturan sistem pemupukan pada lahan pertanian</p>
+        </div>
+      </div>
+
+      <div class="control-grid">
+
+        <div class="control-card">
+          <div class="control-header">
+            <h3>Kontrol Pemupukan</h3>
+            <div class="control-icon">🌿</div>
+          </div>
+
+          <p class="control-description">
+            Atur status pemupukan secara manual atau gunakan mode otomatis sebagai simulasi pengendalian sistem.
+          </p>
+
+          <div class="control-status">
+            <span>Status sistem</span>
+            <strong id="fertilizerStatus">NONAKTIF</strong>
+          </div>
+
+          <div class="field">
+            <label for="fertilizerMode">Mode pengoperasian</label>
+            <select id="fertilizerMode">
+              <option value="manual">Manual</option>
+              <option value="automatic">Otomatis (simulasi)</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin-top:13px">
+            <label for="fertilizerDose">Dosis pupuk (ml)</label>
+            <input type="number" id="fertilizerDose" min="0.1" step="any" value="100">
+          </div>
+
+          <div class="control-buttons" style="margin-top:18px">
+            <button class="primary-btn" id="fertilizerOn">Aktifkan</button>
+            <button class="danger-btn" id="fertilizerOff">Matikan</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <div class="control-header">
+            <h3>Informasi Pemupukan</h3>
+            <div class="control-icon">🧪</div>
+          </div>
+
+          <p class="control-description">
+            Pemupukan perlu mempertimbangkan kandungan unsur hara tanah, jenis tanaman, kebutuhan nutrisi, dan fase pertumbuhan.
+          </p>
+
+          <div class="status-row">
+            <span>Data N</span>
+            <strong id="fertN">0 mg/kg</strong>
+          </div>
+          <div class="status-row">
+            <span>Data P</span>
+            <strong id="fertP">0 mg/kg</strong>
+          </div>
+          <div class="status-row">
+            <span>Data K</span>
+            <strong id="fertK">0 mg/kg</strong>
+          </div>
+
+          <div class="form-actions">
+            <button class="secondary-btn" onclick="copySoilData()">Salin Data Tanah</button>
+            <button class="secondary-btn" onclick="openAI()">Konsultasi AI ↗</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <h3>Catatan Penggunaan</h3>
+        <p class="about-text">
+          Pengaturan pemupukan pada halaman ini hanya berupa simulasi antarmuka website.
+          Sistem belum terhubung dengan pompa pupuk, sensor fisik, atau mikrokontroler.
+          Penentuan dosis pupuk tidak dapat dilakukan hanya berdasarkan satu angka N, P, dan K;
+          diperlukan informasi jenis tanaman, kondisi tanah, serta rekomendasi pemupukan yang sesuai.
+        </p>
+      </div>
+    </section>
+
+    <!-- PENYIRAMAN -->
+    <section class="page" id="page-penyiraman">
+
+      <div class="section-heading">
+        <div>
+          <h2>Pengelolaan Penyiraman</h2>
+          <p>Pengaturan simulasi sistem penyiraman tanaman</p>
+        </div>
+      </div>
+
+      <div class="control-grid">
+
+        <div class="control-card">
+          <div class="control-header">
+            <h3>Kontrol Penyiraman</h3>
+            <div class="control-icon">💧</div>
+          </div>
+
+          <p class="control-description">
+            Sistem dapat diatur menggunakan mode manual atau mode otomatis berdasarkan nilai kelembapan tanah yang dimasukkan.
+          </p>
+
+          <div class="control-status">
+            <span>Status pompa</span>
+            <strong id="waterStatus">NONAKTIF</strong>
+          </div>
+
+          <div class="field">
+            <label for="waterMode">Mode penyiraman</label>
+            <select id="waterMode">
+              <option value="manual">Manual</option>
+              <option value="automatic">Otomatis (simulasi)</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin-top:13px">
+            <label for="moistureThreshold">Batas kelembapan minimum (%)</label>
+            <input type="number" id="moistureThreshold" min="1" max="99" value="40">
+          </div>
+
+          <div class="field" style="margin-top:13px">
+            <label for="waterDuration">Durasi simulasi penyiraman (detik)</label>
+            <input type="number" id="waterDuration" min="1" max="3600" value="10">
+          </div>
+
+          <div class="control-buttons" style="margin-top:18px">
+            <button class="primary-btn" id="waterOn">Nyalakan Pompa</button>
+            <button class="danger-btn" id="waterOff">Matikan Pompa</button>
+          </div>
+        </div>
+
+        <div class="control-card">
+          <div class="control-header">
+            <h3>Kondisi Kelembapan Tanah</h3>
+            <div class="control-icon">🌧️</div>
+          </div>
+
+          <p class="control-description">
+            Nilai kelembapan digunakan sebagai dasar simulasi pengambilan keputusan penyiraman.
+          </p>
+
+          <div style="text-align:center;padding:15px 0">
+            <div style="font-family:Manrope;font-size:43px;font-weight:800;color:var(--green)">
+              <span id="waterMoisture">0</span><span style="font-size:17px">%</span>
+            </div>
+            <div class="metric-note">Kelembapan tanah terakhir</div>
+          </div>
+
+          <div class="progress" style="height:11px">
+            <div class="progress-bar" id="waterProgress"></div>
+          </div>
+
+          <div class="status-row" style="margin-top:15px">
+            <span>Batas minimum</span>
+            <strong id="thresholdDisplay">40%</strong>
+          </div>
+
+          <div class="status-row">
+            <span>Kondisi penyiraman</span>
+            <strong id="waterRecommendation">Belum diketahui</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <h3>Prinsip Kerja Penyiraman Otomatis</h3>
+        <p class="about-text">
+          Pada konsep SIRAMIX, nilai kelembapan tanah menjadi salah satu dasar pengendalian penyiraman.
+          Apabila nilai kelembapan berada di bawah batas yang ditentukan, sistem simulasi akan mengaktifkan pompa.
+          Ketika durasi simulasi berakhir atau kelembapan telah mencapai batas yang ditetapkan, pompa simulasi akan dimatikan.
+          Pada penerapan perangkat sebenarnya, pengendalian ini memerlukan sensor kelembapan, mikrokontroler,
+          relay yang sesuai, pompa, sumber daya, dan instalasi perpipaan.
+        </p>
+      </div>
+    </section>
+
+    <!-- RIWAYAT -->
+    <section class="page" id="page-riwayat">
+
+      <div class="section-heading">
+        <div>
+          <h2>Riwayat Monitoring</h2>
+          <p>Catatan data pengukuran yang telah disimpan</p>
+        </div>
+        <button class="danger-btn" onclick="clearHistory()">Hapus Riwayat</button>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Waktu</th>
+                <th>N</th>
+                <th>P</th>
+                <th>K</th>
+                <th>pH</th>
+                <th>Suhu</th>
+                <th>Kelembapan</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr><td colspan="7" class="empty">Belum ada data monitoring.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTIFIKASI -->
+    <section class="page" id="page-notifikasi">
+
+      <div class="section-heading">
+        <div>
+          <h2>Notifikasi Sistem</h2>
+          <p>Informasi aktivitas dan perubahan status sistem</p>
+        </div>
+        <button class="secondary-btn" onclick="clearNotifications()">Bersihkan</button>
+      </div>
+
+      <div class="panel">
+        <div id="notificationList">
+          <div class="empty">Belum ada notifikasi.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TENTANG -->
+    <section class="page" id="page-tentang">
+
+      <div class="section-heading">
+        <div>
+          <h2>Tentang SIRAMIX</h2>
+          <p>Mengenal sistem pertanian cerdas</p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-highlight">
+          <div style="font-size:35px;margin-bottom:14px">🌱</div>
+          <h2>SIRAMIX</h2>
+          <p>
+            Smart Agriculture System merupakan konsep inovasi teknologi pertanian
+            yang mengintegrasikan pemantauan kondisi tanah dengan pengelolaan
+            pemupukan dan penyiraman tanaman.
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>Tujuan Pengembangan</h3>
+          <p class="about-text">
+            SIRAMIX dirancang untuk membantu pengguna memperoleh informasi kondisi tanah
+            dan mengelola kegiatan budidaya secara lebih terarah. Sistem ini diharapkan
+            dapat mendukung penggunaan air dan pupuk secara lebih efisien melalui
+            pemantauan parameter tanah.
+          </p>
+        </div>
+      </div>
+
+      <div class="section-heading">
+        <div>
+          <h2>Fitur Utama</h2>
+          <p>Komponen fungsi yang tersedia pada website</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="feature-list">
+          <div class="feature-item"><span>🌿</span> Pemantauan unsur hara N, P, dan K.</div>
+          <div class="feature-item"><span>⚗️</span> Pemantauan pH tanah dan suhu tanah.</div>
+          <div class="feature-item"><span>💧</span> Pemantauan kelembapan dan simulasi penyiraman.</div>
+          <div class="feature-item"><span>♧</span> Pengaturan simulasi pemupukan.</div>
+          <div class="feature-item"><span>🤖</span> Integrasi konsultasi melalui ChatGPT.</div>
+          <div class="feature-item"><span>📊</span> Penyimpanan riwayat data monitoring.</div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px">
+        <h3>Catatan Pengembangan</h3>
+        <p class="about-text">
+          Website ini merupakan prototipe antarmuka SIRAMIX. Seluruh input, indikator,
+          dan kontrol pompa pada versi ini berjalan sebagai simulasi di browser.
+          Website belum melakukan komunikasi langsung dengan ESP32, sensor, relay,
+          pompa, maupun perangkat keras lainnya. Integrasi perangkat memerlukan
+          pengembangan sistem komunikasi dan pemrograman mikrokontroler tersendiri.
+        </p>
+      </div>
+    </section>
+
+    <div class="footer">
+      © 2026 SIRAMIX — Smart Agriculture System
     </div>
 
-    <br>
-    <button class="btn" id="saveWater">Simpan Pengaturan</button>
-
-    <p class="note">
-      Pada mode otomatis, sistem demonstrasi membandingkan kelembapan
-      tanah dengan batas minimum yang telah ditentukan. Fitur ini belum
-      mengaktifkan pompa air fisik.
-    </p>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <div class="card-icon">💧</div>
-      <small>Kelembapan Saat Ini</small>
-      <div class="value" id="waterCurrent">65%</div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🎯</div>
-      <small>Batas Kelembapan</small>
-      <div class="value" id="waterTarget">40%</div>
-    </div>
-
-    <div class="card">
-      <div class="card-icon">🚿</div>
-      <small>Rekomendasi Sistem</small>
-      <div class="value" id="waterRecommendation" style="font-size:18px">Belum perlu</div>
-    </div>
-  </div>
-
-  <div class="panel">
-    <h3>Analisis Kondisi Penyiraman</h3>
-    <p class="panel-description" id="waterMessage">
-      Sistem menggunakan data kelembapan dari menu Monitoring Sensor.
-    </p>
-    <br>
-    <button class="btn btn-light" id="checkWater">Periksa Kondisi Tanah</button>
-  </div>
-</section>
-
-<!-- RIWAYAT -->
-<section class="page" id="riwayat">
-  <h2 class="page-heading">Riwayat Aktivitas</h2>
-
-  <div class="panel">
-    <div class="panel-header">
-      <h3>Catatan Aktivitas Sistem</h3>
-      <button class="btn btn-light" id="clearHistory">Hapus Riwayat</button>
-    </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Waktu</th>
-            <th>Aktivitas</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="historyBody">
-          <tr>
-            <td>-</td>
-            <td>Website dibuka</td>
-            <td><span class="tag">Demonstrasi</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- NOTIFIKASI -->
-<section class="page" id="notifikasi">
-  <h2 class="page-heading">Notifikasi Sistem</h2>
-
-  <div class="panel">
-    <h3>Informasi SIRAMIX</h3>
-    <div id="notificationList">
-      <div class="notification">🌱 Sistem SIRAMIX berhasil dibuka.</div>
-      <div class="notification">📡 Monitoring sensor tersedia dalam mode demonstrasi.</div>
-      <div class="notification">💧 Pengaturan penyiraman air tersedia.</div>
-      <div class="notification">🌿 Pengaturan pemupukan tersedia.</div>
-      <div class="notification">🤖 Data unsur hara dapat disalin untuk dianalisis melalui ChatGPT.</div>
-    </div>
-  </div>
-</section>
-
-<!-- TENTANG -->
-<section class="page" id="about">
-  <h2 class="page-heading">Tentang SIRAMIX</h2>
-
-  <div class="hero">
-    <h1>SIRAMIX 🌿</h1>
-    <p>
-      Smart Automatic Fertilization System merupakan inovasi yang
-      mengintegrasikan pemantauan kondisi tanah, pemupukan, dan
-      penyiraman untuk mendukung pertanian modern.
-    </p>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-box">
-      <h3>Latar Belakang</h3>
-      <p>
-        SIRAMIX dikembangkan untuk membantu mengatasi pengelolaan
-        pemupukan dan penyiraman yang masih banyak dilakukan berdasarkan
-        perkiraan tanpa pemantauan kondisi tanah secara terukur.
-      </p>
-    </div>
-
-    <div class="about-box">
-      <h3>Tujuan</h3>
-      <p>
-        Mengembangkan sistem pemupukan dan penyiraman otomatis yang
-        membantu mengatur pemberian nutrisi serta air sesuai kondisi
-        tanah dan kebutuhan tanaman.
-      </p>
-    </div>
-
-    <div class="about-box">
-      <h3>Teknologi</h3>
-      <p>
-        Sistem dirancang menggunakan mikrokontroler ESP32, sensor,
-        relay, pompa air, pompa pupuk, serta perangkat pendukung lainnya.
-      </p>
-    </div>
-
-    <div class="about-box">
-      <h3>Manfaat</h3>
-      <p>
-        Membantu meningkatkan efisiensi penggunaan air dan pupuk,
-        mendukung pemantauan lahan, serta mempermudah pengambilan
-        keputusan dalam kegiatan budidaya tanaman.
-      </p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  © 2026 SIRAMIX | Smart Automatic Fertilization System
-  <br><br>
-  Technology for Sustainable Agriculture 🌱
-</footer>
-
-</main>
+  </main>
 </div>
 
+<div class="toast" id="toast">Berhasil!</div>
+
 <script>
-"use strict";
+/* =========================
+   DATA DAN PENYIMPANAN
+========================= */
 
-/* UTILITAS */
+const defaultData = {
+  n: 0,
+  p: 0,
+  k: 0,
+  ph: 0,
+  temp: 0,
+  moisture: 0
+};
 
-const $ = (id) => document.getElementById(id);
+let data = { ...defaultData };
+let history = [];
+let notifications = [];
+let fertilizerActive = false;
+let waterActive = false;
+let waterTimer = null;
 
-function safeRead(key, fallback) {
+function loadStorage() {
   try {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
+    const savedData = localStorage.getItem("siramix_data");
+    const savedHistory = localStorage.getItem("siramix_history");
+    const savedNotifications = localStorage.getItem("siramix_notifications");
+
+    if (savedData) data = { ...defaultData, ...JSON.parse(savedData) };
+    if (savedHistory) history = JSON.parse(savedHistory);
+    if (savedNotifications) notifications = JSON.parse(savedNotifications);
   } catch (error) {
-    return fallback;
+    console.warn("Data penyimpanan tidak dapat dibaca.", error);
   }
 }
 
-function safeSave(key, value) {
+function saveStorage() {
   try {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem("siramix_data", JSON.stringify(data));
+    localStorage.setItem("siramix_history", JSON.stringify(history));
+    localStorage.setItem("siramix_notifications", JSON.stringify(notifications));
   } catch (error) {
-    console.warn("Penyimpanan browser tidak tersedia.");
+    showToast("Penyimpanan browser tidak tersedia.");
   }
 }
 
-/* NAVIGASI */
+/* =========================
+   NAVIGASI
+========================= */
 
-const pageTitles = {
-  home: "Beranda",
-  dashboard: "Dashboard Monitoring",
-  monitoring: "Monitoring Sensor",
-  pupuk: "Kontrol Pemupukan",
-  penyiraman: "Kontrol Penyiraman Air",
-  riwayat: "Riwayat Aktivitas",
+const pageNames = {
+  beranda: "Beranda",
+  dashboard: "Dashboard",
+  monitoring: "Monitoring Tanah",
+  pemupukan: "Pemupukan",
+  penyiraman: "Penyiraman",
+  riwayat: "Riwayat Data",
   notifikasi: "Notifikasi",
-  about: "Tentang SIRAMIX"
+  tentang: "Tentang SIRAMIX"
 };
 
-function showPage(page) {
-  document.querySelectorAll(".page").forEach(section => {
-    section.classList.remove("active");
+function goPage(page) {
+  document.querySelectorAll(".page").forEach(item => {
+    item.classList.remove("active");
   });
 
-  const target = $(page);
-  if (!target) return;
-
-  target.classList.add("active");
-
-  document.querySelectorAll(".nav-item[data-page]").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === page);
+  document.querySelectorAll(".nav-item").forEach(item => {
+    item.classList.remove("active");
   });
 
-  $("pageTitle").textContent = pageTitles[page] || "SIRAMIX";
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const target = document.getElementById("page-" + page);
+  if (target) target.classList.add("active");
+
+  const nav = document.querySelector('[data-page="' + page + '"]');
+  if (nav) nav.classList.add("active");
+
+  document.getElementById("pageHeading").textContent =
+    pageNames[page] || "SIRAMIX";
+
+  document.getElementById("sidebar").classList.remove("open");
+
+  if (page === "riwayat") renderHistory();
+  if (page === "notifikasi") renderNotifications();
+  if (page === "dashboard") updateDashboard();
 }
 
-document.querySelectorAll("[data-page]").forEach(button => {
+document.querySelectorAll(".nav-item").forEach(button => {
   button.addEventListener("click", () => {
-    showPage(button.dataset.page);
+    goPage(button.dataset.page);
   });
 });
 
-document.querySelectorAll("[data-go]").forEach(button => {
-  button.addEventListener("click", () => {
-    showPage(button.dataset.go);
-  });
+document.getElementById("mobileMenu").addEventListener("click", () => {
+  document.getElementById("sidebar").classList.toggle("open");
 });
 
-/* DATA MONITORING */
+/* =========================
+   TANGGAL DAN TOAST
+========================= */
 
-let soilData = {
-  nitrogen: 45,
-  phosphorus: 30,
-  potassium: 35,
-  soilPH: 6.5,
-  soilTemperature: 28,
-  soilMoisture: 65
-};
-
-function readSoilInputs() {
-  const ids = [
-    "nitrogen",
-    "phosphorus",
-    "potassium",
-    "soilPH",
-    "soilTemperature",
-    "soilMoisture"
-  ];
-
-  const values = {};
-
-  for (const id of ids) {
-    const input = $(id);
-    const value = input.value.trim();
-
-    if (value === "" || !Number.isFinite(Number(value))) {
-      alert("Lengkapi seluruh data dengan angka yang valid.");
-      input.focus();
-      return null;
-    }
-
-    values[id] = Number(value);
-
-    if (values[id] < 0) {
-      alert("Data tidak boleh bernilai negatif.");
-      input.focus();
-      return null;
-    }
-  }
-
-  if (values.soilPH > 14) {
-    alert("pH tanah harus berada pada rentang 0 sampai 14.");
-    $("soilPH").focus();
-    return null;
-  }
-
-  if (values.soilMoisture > 100) {
-    alert("Kelembapan harus berada pada rentang 0 sampai 100%.");
-    $("soilMoisture").focus();
-    return null;
-  }
-
-  return values;
+function updateDate() {
+  const now = new Date();
+  document.getElementById("currentDate").textContent =
+    now.toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
 }
 
-function renderSoilData() {
-  $("showN").textContent = soilData.nitrogen + " mg/kg";
-  $("showP").textContent = soilData.phosphorus + " mg/kg";
-  $("showK").textContent = soilData.potassium + " mg/kg";
-  $("showPH").textContent = soilData.soilPH;
-  $("showTemp").textContent = soilData.soilTemperature + " °C";
-  $("showMoisture").textContent = soilData.soilMoisture + "%";
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
 
-  $("dashTemp").textContent = soilData.soilTemperature + "°C";
-  $("dashMoisture").textContent = soilData.soilMoisture + "%";
-  $("dashMoistureLabel").textContent = soilData.soilMoisture + "%";
-
-  $("moistureBar").style.width = soilData.soilMoisture + "%";
-
-  $("waterCurrent").textContent = soilData.soilMoisture + "%";
-
-  safeSave("siramixSoilData", soilData);
-  checkWaterCondition(false);
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2600);
 }
 
-$("updateMonitoring").addEventListener("click", () => {
-  const values = readSoilInputs();
-  if (!values) return;
+/* =========================
+   NOTIFIKASI
+========================= */
 
-  soilData = values;
-  renderSoilData();
-  addHistory("Pembaruan data monitoring", "Berhasil");
-  addNotification("📡 Data monitoring berhasil diperbarui.");
-
-  alert("Data monitoring berhasil diperbarui.");
-});
-
-/* RIWAYAT DAN NOTIFIKASI */
-
-let historyData = safeRead("siramixHistory", []);
-let notificationData = safeRead("siramixNotifications", []);
-
-function addHistory(activity, status) {
-  historyData.unshift({
-    time: new Date().toLocaleString("id-ID"),
-    activity,
-    status
+function addNotification(title, message, icon = "🔔") {
+  notifications.unshift({
+    title,
+    message,
+    icon,
+    time: new Date().toLocaleString("id-ID")
   });
 
-  historyData = historyData.slice(0, 100);
-  safeSave("siramixHistory", historyData);
-  renderHistory();
-}
-
-function renderHistory() {
-  const body = $("historyBody");
-  body.innerHTML = "";
-
-  if (!historyData.length) {
-    const row = body.insertRow();
-    const cell = row.insertCell();
-    cell.colSpan = 3;
-    cell.textContent = "Belum ada aktivitas.";
-    return;
-  }
-
-  historyData.forEach(item => {
-    const row = body.insertRow();
-    row.insertCell().textContent = item.time;
-    row.insertCell().textContent = item.activity;
-
-    const statusCell = row.insertCell();
-    const tag = document.createElement("span");
-    tag.className = "tag";
-    tag.textContent = item.status;
-    statusCell.appendChild(tag);
-  });
-}
-
-function addNotification(message) {
-  notificationData.unshift({
-    time: new Date().toLocaleString("id-ID"),
-    message
-  });
-
-  notificationData = notificationData.slice(0, 30);
-  safeSave("siramixNotifications", notificationData);
+  notifications = notifications.slice(0, 50);
+  saveStorage();
   renderNotifications();
 }
 
 function renderNotifications() {
-  const list = $("notificationList");
-  list.innerHTML = "";
+  const container = document.getElementById("notificationList");
 
-  if (!notificationData.length) {
-    const empty = document.createElement("div");
-    empty.className = "notification";
-    empty.textContent = "Belum ada notifikasi.";
-    list.appendChild(empty);
+  if (!notifications.length) {
+    container.innerHTML = '<div class="empty">Belum ada notifikasi.</div>';
     return;
   }
 
-  notificationData.forEach(item => {
-    const box = document.createElement("div");
-    box.className = "notification";
-    box.textContent = item.time + " — " + item.message;
-    list.appendChild(box);
-  });
+  container.innerHTML = notifications.map(item => `
+    <div class="notification">
+      <div class="notification-icon">${escapeHTML(item.icon)}</div>
+      <div>
+        <h4>${escapeHTML(item.title)}</h4>
+        <p>${escapeHTML(item.message)}</p>
+        <p style="margin-top:5px;font-size:10px">${escapeHTML(item.time)}</p>
+      </div>
+    </div>
+  `).join("");
 }
 
-$("clearHistory").addEventListener("click", () => {
-  if (!confirm("Hapus seluruh riwayat aktivitas?")) return;
-
-  historyData = [];
-  safeSave("siramixHistory", historyData);
-  renderHistory();
-});
-
-/* PEMUPUKAN */
-
-let fertOn = false;
-
-function renderFert() {
-  $("dashFert").textContent = fertOn ? "ON" : "OFF";
-  $("fertText").textContent = fertOn
-    ? "Pompa pupuk aktif (simulasi)."
-    : "Pompa dalam keadaan mati.";
-
-  $("fertButton").textContent = fertOn ? "MATIKAN" : "HIDUPKAN";
-  $("fertButton").classList.toggle("btn-off", !fertOn);
+function clearNotifications() {
+  notifications = [];
+  saveStorage();
+  renderNotifications();
+  showToast("Notifikasi dibersihkan.");
 }
 
-$("fertButton").addEventListener("click", () => {
-  if ($("fertMode").value === "auto") {
-    alert("Mode otomatis dipilih. Kontrol manual tidak tersedia.");
-    return;
-  }
+/* =========================
+   FUNGSI KEAMANAN TEKS
+========================= */
 
-  fertOn = !fertOn;
-  renderFert();
-
-  const status = fertOn ? "ON (simulasi)" : "OFF (simulasi)";
-  addHistory("Aktivitas pemupukan", status);
-  addNotification("🌿 Status pompa pupuk berubah menjadi " + status + ".");
-});
-
-$("saveFert").addEventListener("click", () => {
-  const dose = Number($("dose").value);
-
-  if (!Number.isFinite(dose) || dose <= 0) {
-    alert("Masukkan takaran pupuk yang valid.");
-    return;
-  }
-
-  safeSave("siramixFertSetting", {
-    mode: $("fertMode").value,
-    dose
-  });
-
-  addHistory("Pengaturan takaran pupuk: " + dose, "Tersimpan");
-  alert("Pengaturan pemupukan berhasil disimpan.");
-});
-
-/* PENYIRAMAN AIR */
-
-let waterOn = false;
-let waterSettings = {
-  mode: "auto",
-  limit: 40,
-  duration: 30
-};
-
-function renderWater() {
-  $("dashWater").textContent = waterOn ? "ON" : "OFF";
-
-  $("waterText").textContent = waterOn
-    ? "Pompa air aktif (simulasi)."
-    : "Pompa air dalam keadaan mati.";
-
-  $("waterButton").textContent = waterOn ? "MATIKAN" : "HIDUPKAN";
-  $("waterButton").classList.toggle("btn-off", !waterOn);
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  })[char]);
 }
 
-function checkWaterCondition(record = true) {
-  const moisture = soilData.soilMoisture;
-  const limit = Number($("moistureLimit").value);
+/* =========================
+   INPUT MONITORING
+========================= */
 
-  $("waterCurrent").textContent = moisture + "%";
-  $("waterTarget").textContent = limit + "%";
+document.getElementById("monitorForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-  if (!Number.isFinite(limit) || limit < 0 || limit > 100) {
-    $("waterMessage").textContent = "Periksa kembali batas kelembapan.";
-    return;
-  }
-
-  const needsWater = moisture < limit;
-
-  if (needsWater) {
-    $("waterRecommendation").textContent = "Perlu disiram";
-    $("waterMessage").textContent =
-      "Kelembapan tanah berada di bawah batas minimum. Sistem merekomendasikan penyiraman.";
-
-    if ($("waterMode").value === "auto" && !waterOn) {
-      waterOn = true;
-      renderWater();
-
-      if (record) {
-        addHistory("Penyiraman otomatis", "ON (simulasi)");
-        addNotification("💧 Kelembapan berada di bawah batas minimum.");
-      }
-    }
-  } else {
-    $("waterRecommendation").textContent = "Belum perlu";
-    $("waterMessage").textContent =
-      "Kelembapan tanah masih berada pada atau di atas batas minimum.";
-
-    if ($("waterMode").value === "auto" && waterOn) {
-      waterOn = false;
-      renderWater();
-
-      if (record) {
-        addHistory("Penyiraman otomatis dihentikan", "OFF (simulasi)");
-        addNotification("💧 Penyiraman dihentikan karena kelembapan mencukupi.");
-      }
-    }
-  }
-}
-
-$("waterMode").addEventListener("change", () => {
-  if ($("waterMode").value === "auto") {
-    checkWaterCondition();
-  } else {
-    $("waterMessage").textContent =
-      "Mode manual aktif. Pengguna dapat mengendalikan pompa melalui tombol.";
-  }
-});
-
-$("waterButton").addEventListener("click", () => {
-  if ($("waterMode").value !== "manual") {
-    alert("Pilih mode Manual terlebih dahulu untuk mengontrol pompa.");
-    return;
-  }
-
-  waterOn = !waterOn;
-  renderWater();
-
-  const status = waterOn ? "ON (simulasi)" : "OFF (simulasi)";
-  addHistory("Aktivitas penyiraman air", status);
-  addNotification("💧 Status pompa air berubah menjadi " + status + ".");
-});
-
-$("checkWater").addEventListener("click", () => {
-  checkWaterCondition();
-});
-
-$("saveWater").addEventListener("click", () => {
-  const limit = Number($("moistureLimit").value);
-  const duration = Number($("waterDuration").value);
-
-  if (!Number.isFinite(limit) || limit < 0 || limit > 100) {
-    alert("Batas kelembapan harus berada pada rentang 0 sampai 100%.");
-    return;
-  }
-
-  if (!Number.isFinite(duration) || duration <= 0) {
-    alert("Durasi penyiraman harus lebih dari 0 detik.");
-    return;
-  }
-
-  waterSettings = {
-    mode: $("waterMode").value,
-    limit,
-    duration
+  const nextData = {
+    n: Number(document.getElementById("inputN").value),
+    p: Number(document.getElementById("inputP").value),
+    k: Number(document.getElementById("inputK").value),
+    ph: Number(document.getElementById("inputPH").value),
+    temp: Number(document.getElementById("inputTemp").value),
+    moisture: Number(document.getElementById("inputMoisture").value)
   };
 
-  safeSave("siramixWaterSetting", waterSettings);
+  if (Object.values(nextData).some(value => !Number.isFinite(value))) {
+    showToast("Periksa kembali seluruh nilai input.");
+    return;
+  }
 
-  $("waterTarget").textContent = limit + "%";
+  if (nextData.n < 0 || nextData.p < 0 || nextData.k < 0 ||
+      nextData.ph < 0 || nextData.ph > 14 ||
+      nextData.moisture < 0 || nextData.moisture > 100 ||
+      nextData.temp < -20 || nextData.temp > 100) {
+    showToast("Ada nilai yang berada di luar batas input.");
+    return;
+  }
 
-  addHistory(
-    "Pengaturan penyiraman: batas " + limit + "%, durasi " + duration + " detik",
-    "Tersimpan"
+  data = nextData;
+
+  history.unshift({
+    ...data,
+    time: new Date().toLocaleString("id-ID")
+  });
+
+  history = history.slice(0, 100);
+
+  saveStorage();
+  updateAll();
+
+  addNotification(
+    "Data monitoring diperbarui",
+    "Data kondisi tanah terbaru berhasil disimpan.",
+    "📊"
   );
 
-  addNotification("💧 Pengaturan penyiraman berhasil diperbarui.");
+  showToast("Data monitoring berhasil disimpan!");
 
-  alert("Pengaturan penyiraman berhasil disimpan.");
-
-  if (waterSettings.mode === "auto") {
-    checkWaterCondition();
-  }
+  // Periksa kondisi penyiraman otomatis setelah data berubah.
+  checkAutomaticWatering();
 });
 
-/* SALIN DATA UNTUK AI */
+/* =========================
+   UPDATE TAMPILAN
+========================= */
 
-$("copyAI").addEventListener("click", async () => {
-  const values = readSoilInputs();
-  if (!values) return;
-
-  const plant = $("plantType").value.trim() || "Belum disebutkan";
-
-  const prompt = `DATA MONITORING TANAH SIRAMIX
-
-Nitrogen (N): ${values.nitrogen} mg/kg
-Fosfor (P): ${values.phosphorus} mg/kg
-Kalium (K): ${values.potassium} mg/kg
-pH tanah: ${values.soilPH}
-Suhu tanah: ${values.soilTemperature} °C
-Kelembapan tanah: ${values.soilMoisture}%
-Jenis tanaman: ${plant}
-
-Tolong analisis data tersebut dengan bahasa yang mudah dipahami:
-1. Jelaskan kondisi setiap parameter tanah.
-2. Jelaskan unsur hara yang perlu diperhatikan.
-3. Berikan saran umum pengelolaan tanah dan pemupukan.
-4. Analisis kebutuhan penyiraman berdasarkan kelembapan tanah.
-5. Jelaskan informasi tambahan yang diperlukan sebelum menentukan dosis pupuk dan kebutuhan air.
-6. Pertimbangkan jenis tanaman dan fase pertumbuhannya.
-7. Jangan menentukan dosis pupuk secara pasti tanpa informasi pendukung yang memadai.`;
-
-  const status = $("copyStatus");
-
-  try {
-    if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(prompt);
-    } else {
-      const area = document.createElement("textarea");
-      area.value = prompt;
-      area.style.position = "fixed";
-      area.style.opacity = "0";
-      document.body.appendChild(area);
-      area.select();
-
-      const success = document.execCommand("copy");
-      area.remove();
-
-      if (!success) throw new Error("Gagal menyalin");
-    }
-
-    status.textContent = "✓ Data berhasil disalin. Buka ChatGPT dan tempelkan teks tersebut.";
-    addHistory("Menyalin data monitoring untuk AI", "Berhasil");
-  } catch (error) {
-    status.textContent = "Gagal menyalin data. Silakan coba kembali melalui browser HTTPS.";
-  }
-});
-
-/* MEMUAT PENGATURAN TERSIMPAN */
-
-function loadSavedData() {
-  const savedSoil = safeRead("siramixSoilData", null);
-
-  if (savedSoil && typeof savedSoil === "object") {
-    soilData = { ...soilData, ...savedSoil };
-
-    Object.keys(soilData).forEach(key => {
-      if ($(key)) $(key).value = soilData[key];
-    });
-  }
-
-  const savedWater = safeRead("siramixWaterSetting", null);
-
-  if (savedWater) {
-    waterSettings = { ...waterSettings, ...savedWater };
-    $("waterMode").value = waterSettings.mode;
-    $("moistureLimit").value = waterSettings.limit;
-    $("waterDuration").value = waterSettings.duration;
-  }
-
-  const savedFert = safeRead("siramixFertSetting", null);
-
-  if (savedFert) {
-    $("fertMode").value = savedFert.mode || "manual";
-    $("dose").value = savedFert.dose || 100;
-  }
-
-  renderSoilData();
-  renderFert();
-  renderWater();
-  renderHistory();
-  renderNotifications();
+function setText(id, value) {
+  document.getElementById(id).textContent = value;
 }
 
-loadSavedData();
-</script>
+function setBar(id, percentage) {
+  document.getElementById(id).style.width =
+    Math.max(0, Math.min(100, percentage)) + "%";
+}
 
+function updateAll() {
+  // Beranda
+  setText("homeN", data.n);
+  setText("homeP", data.p);
+  setText("homeK", data.k);
+  setText("homeMoisture", data.moisture);
+
+  // Dashboard
+  updateDashboard();
+
+  // Monitoring
+  setText("monitorN", data.n + " mg/kg");
+  setText("monitorP", data.p + " mg/kg");
+  setText("monitorK", data.k + " mg/kg");
+  setText("monitorPH", data.ph);
+  setText("monitorTemp", data.temp + " °C");
+  setText("monitorMoisture", data.moisture + "%");
+
+  setBar("barN", data.n / 2);
+  setBar("barP", data.p / 2);
+  setBar("barK", data.k / 2);
+  setBar("barPH", data.ph / 14 * 100);
+  setBar("barTemp", data.temp / 60 * 100);
+  setBar("barMoisture", data.moisture);
+
+  // Pemupukan
+  setText("fertN", data.n + " mg/kg");
+  setText("fertP", data.p + " mg/kg");
+  setText("fertK", data.k + " mg/kg");
+
+  // Penyiraman
+  setText("waterMoisture", data.moisture);
+  setBar("waterProgress", data.moisture);
+
+  updateControlStatus();
+  updateHomeStatus();
+  updateWaterRecommendation();
+}
+
+function updateDashboard() {
+  setText("dashN", data.n);
+  setText("dashP", data.p);
+  setText("dashK", data.k);
+  setText("dashPH", data.ph);
+  setText("dashTemp", data.temp);
+  setText("dashMoisture", data.moisture);
+  setText("dashFertilizer", fertilizerActive ? "Aktif" : "Nonaktif");
+  setText("dashWater", waterActive ? "Aktif" : "Nonaktif");
+
+  const analysis = document.getElementById("dashboardAnalysis");
+
+  if (!history.length) {
+    analysis.textContent =
+      "Belum terdapat data pengukuran. Silakan masukkan data melalui menu Monitoring Tanah.";
+    return;
+  }
+
+  let moistureText = data.moisture < 40
+    ? "Nilai kelembapan berada di bawah 40%."
+    : "Nilai kelembapan berada pada atau di atas 40%.";
+
+  let phText = data.ph < 5.5
+    ? "pH tanah tergolong asam berdasarkan nilai yang dimasukkan."
+    : data.ph > 7.5
+      ? "pH tanah tergolong basa berdasarkan nilai yang dimasukkan."
+      : "pH tanah berada dalam kisaran 5,5–7,5.";
+
+  analysis.textContent =
+    "Data terakhir menunjukkan nitrogen sebesar " + data.n +
+    " mg/kg, fosfor " + data.p +
+    " mg/kg, kalium " + data.k +
+    " mg/kg, pH " + data.ph +
+    ", suhu " + data.temp +
+    " °C, dan kelembapan " + data.moisture +
+    "%. " + moistureText + " " + phText +
+    " Interpretasi kecukupan unsur hara perlu disesuaikan dengan jenis tanaman dan hasil analisis tanah.";
+}
+
+function updateHomeStatus() {
+  const hasData = history.length > 0;
+
+  setText("homeMonitorStatus", hasData ? "Data tersedia" : "Belum ada data");
+  setText("homeFertilizerStatus", fertilizerActive ? "Aktif" : "Nonaktif");
+  setText("homeWaterStatus", waterActive ? "Aktif" : "Nonaktif");
+}
+
+function updateControlStatus() {
+  setText("fertilizerStatus", fertilizerActive ? "AKTIF" : "NONAKTIF");
+  setText("waterStatus", waterActive ? "AKTIF" : "NONAKTIF");
+
+  document.getElementById("fertilizerStatus").style.color =
+    fertilizerActive ? "#4e9a58" : "#829187";
+
+  document.getElementById("waterStatus").style.color =
+    waterActive ? "#4e9a58" : "#829187";
+
+  updateDashboard();
+  updateHomeStatus();
+}
+
+function updateWaterRecommendation() {
+  const threshold = Number(document.getElementById("moistureThreshold").value) || 40;
+
+  setText("thresholdDisplay", threshold + "%");
+
+  let recommendation = "Kelembapan mencukupi";
+
+  if (data.moisture < threshold) {
+    recommendation = "Perlu penyiraman";
+  }
+
+  setText("waterRecommendation", recommendation);
+}
+
+/* =========================
+   PEMUPUKAN
+========================= */
+
+document.getElementById("fertilizerOn").addEventListener("click", () => {
+  const dose = Number(document.getElementById("fertilizerDose").value);
+
+  if (!Number.isFinite(dose) || dose <= 0) {
+    showToast("Masukkan dosis pupuk yang valid.");
+    return;
+  }
+
+  fertilizerActive = true;
+  updateControlStatus();
+
+  addNotification(
+    "Pemupukan diaktifkan",
+    "Simulasi pemupukan aktif dengan pengaturan dosis " + dose + " ml.",
+    "🌿"
+  );
+
+  showToast("Simulasi pemupukan diaktifkan.");
+});
+
+document.getElementById("fertilizerOff").addEventListener("click", () => {
+  fertilizerActive = false;
+  updateControlStatus();
+
+  addNotification(
+    "Pemupukan dimatikan",
+    "Simulasi pemupukan telah dinonaktifkan.",
+    "🛑"
+  );
+
+  showToast("Simulasi pemupukan dimatikan.");
+});
+
+/* =========================
+   PENYIRAMAN
+========================= */
+
+function stopWaterTimer() {
+  if (waterTimer) {
+    clearTimeout(waterTimer);
+    waterTimer = null;
+  }
+}
+
+function activateWater(reason) {
+  if (waterActive) return;
+
+  waterActive = true;
+  updateControlStatus();
+
+  addNotification(
+    "Pompa penyiraman aktif",
+    reason,
+    "💧"
+  );
+
+  showToast("Simulasi pompa aktif.");
+
+  const duration = Number(document.getElementById("waterDuration").value);
+
+  stopWaterTimer();
+
+  if (Number.isFinite(duration) && duration > 0) {
+    waterTimer = setTimeout(() => {
+      waterActive = false;
+      waterTimer = null;
+      updateControlStatus();
+
+      addNotification(
+        "Pompa penyiraman berhenti",
+        "Durasi simulasi penyiraman telah selesai.",
+        "🛑"
+      );
+
+      showToast("Durasi simulasi selesai.");
+    }, duration * 1000);
+  }
+}
+
+function deactivateWater(reason) {
+  stopWaterTimer();
+
+  if (!waterActive) return;
+
+  waterActive = false;
+  updateControlStatus();
+
+  addNotification(
+    "Pompa penyiraman nonaktif",
+    reason || "Simulasi pompa telah dimatikan.",
+    "🛑"
+  );
+
+  showToast("Simulasi pompa dimatikan.");
+}
+
+function checkAutomaticWatering() {
+  const mode = document.getElementById("waterMode").value;
+  const threshold = Number(document.getElementById("moistureThreshold").value);
+
+  if (mode !== "automatic") return;
+
+  if (data.moisture < threshold && !waterActive) {
+    const duration = Number(document.getElementById("waterDuration").value);
+
+    if (!Number.isFinite(duration) || duration <= 0) {
+      showToast("Atur durasi simulasi yang valid.");
+      return;
+    }
+
+    activateWater(
+      "Kelembapan tanah " + data.moisture +
+      "% berada di bawah batas minimum " + threshold + "%."
+    );
+  } else if (data.moisture >= threshold && waterActive) {
+    deactivateWater(
+      "Kelembapan tanah telah mencapai atau melampaui batas minimum."
+    );
+  }
+}
+
+document.getElementById("waterOn").addEventListener("click", () => {
+  if (document.getElementById("waterMode").value === "automatic") {
+    showToast("Gunakan mode manual untuk menyalakan pompa langsung.");
+    return;
+  }
+
+  const duration = Number(document.getElementById("waterDuration").value);
+
+  if (!Number.isFinite(duration) || duration <= 0) {
+    showToast("Masukkan durasi simulasi yang valid.");
+    return;
+  }
+
+  activateWater("Pompa diaktifkan secara manual melalui website.");
+});
+
+document.getElementById("waterOff").addEventListener("click", () => {
+  deactivateWater("Pompa dimatikan secara manual melalui website.");
+});
+
+document.getElementById("waterMode").addEventListener("change", () => {
+  stopWaterTimer();
+  waterActive = false;
+  updateControlStatus();
+
+  if (document.getElementById("waterMode").value === "automatic") {
+    showToast("Mode otomatis simulasi diaktifkan.");
+    checkAutomaticWatering();
+  } else {
+    showToast("Mode manual diaktifkan.");
+  }
+});
+
+document.getElementById("moistureThreshold").addEventListener("input", () => {
+  updateWaterRecommendation();
+  checkAutomaticWatering();
+});
+
+document.getElementById("waterDuration").addEventListener("change", () => {
+  const duration = Number(document.getElementById("waterDuration").value);
+
+  if (!Number.isFinite(duration) || duration <= 0) {
+    showToast("Durasi harus lebih dari 0 detik.");
+  }
+});
+
+/* =========================
+   RIWAYAT DATA
+========================= */
+
+function renderHistory() {
+  const body = document.getElementById("historyBody");
+
+  if (!history.length) {
+    body.innerHTML =
+      '<tr><td colspan="7" class="empty">Belum ada data monitoring.</td></tr>';
+    return;
+  }
+
+  body.innerHTML = history.map(item => `
+    <tr>
+      <td>${escapeHTML(item.time)}</td>
+      <td>${escapeHTML(item.n)}</td>
+      <td>${escapeHTML(item.p)}</td>
+      <td>${escapeHTML(item.k)}</td>
+      <td>${escapeHTML(item.ph)}</td>
+      <td>${escapeHTML(item.temp)} °C</td>
+      <td>${escapeHTML(item.moisture)}%</td>
+    </tr>
+  `).join("");
+}
+
+function clearHistory() {
+  if (!confirm("Yakin ingin menghapus seluruh riwayat monitoring?")) return;
+
+  history = [];
+  saveStorage();
+  renderHistory();
+  updateDashboard();
+  updateHomeStatus();
+
+  showToast("Riwayat berhasil dihapus.");
+}
+
+/* =========================
+   SALIN DATA DAN CHATGPT
+========================= */
+
+function buildSoilPrompt() {
+  return `Saya ingin menganalisis kondisi tanah pertanian berdasarkan data berikut:
+
+Nitrogen (N): ${data.n} mg/kg
+Fosfor (P): ${data.p} mg/kg
+Kalium (K): ${data.k} mg/kg
+pH tanah: ${data.ph}
+Suhu tanah: ${data.temp} °C
+Kelembapan tanah: ${data.moisture}%
+
+Tolong bantu:
+1. Jelaskan kondisi setiap parameter tanah.
+2. Identifikasi parameter yang perlu diperhatikan.
+3. Berikan saran pengelolaan tanah dan pemupukan berdasarkan data tersebut.
+4. Jelaskan pertimbangan penyiraman berdasarkan kelembapan.
+5. Sebutkan informasi tambahan yang diperlukan agar rekomendasi lebih akurat.
+
+Jangan langsung menentukan dosis pupuk tanpa mengetahui jenis tanaman, fase pertumbuhan, satuan dan metode pengukuran, serta kondisi lahan.`;
+}
+
+async function copySoilData() {
+  const prompt = buildSoilPrompt();
+
+  try {
+    await navigator.clipboard.writeText(prompt);
+    showToast("Data monitoring berhasil disalin!");
+  } catch (error) {
+    const textarea = document.createElement("textarea");
+    textarea.value = prompt;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      showToast("Data monitoring berhasil disalin!");
+    } catch (copyError) {
+      showToast("Gagal menyalin. Silakan coba lagi.");
+    }
+
+    textarea.remove();
+  }
+}
+
+function openAI() {
+  window.open("https://chatgpt.com/", "_blank", "noopener,noreferrer");
+}
+
+/* =========================
+   INISIALISASI
+========================= */
+
+loadStorage();
+updateDate();
+updateAll();
+renderHistory();
+renderNotifications();
+
+</script>
 </body>
 </html>
