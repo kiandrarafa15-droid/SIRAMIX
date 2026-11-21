@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIRAMIX | Smart Fertilizer System</title>
+
+<style>
+:root {
+  --green: #176b45;
+  --dark: #103d2b;
+  --light: #eaf5ed;
+  --bg: #f5f8f5;
+  --white: #ffffff;
+  --text: #263b30;
+  --muted: #829087;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 245px;
+  background: var(--dark);
+  color: white;
+  padding: 28px 18px;
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 45px;
+}
+
+.logo span {
+  font-size: 28px;
+}
+
+.menu-title {
+  color: #a6c6b2;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin: 25px 12px 12px;
+}
+
+.nav-item {
+  padding: 13px;
+  border-radius: 9px;
+  margin: 5px 0;
+  color: #d1e3d7;
+  cursor: pointer;
+  transition: .2s;
+  font-size: 14px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #287b53;
+  color: white;
+}
+
+/* MAIN */
+.main {
+  margin-left: 245px;
+  width: calc(100% - 245px);
+  padding: 30px 38px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.topbar h2 {
+  font-size: 23px;
+}
+
+.topbar p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.status {
+  background: #e2f5e8;
+  color: #197644;
+  padding: 9px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(120deg, #145b39, #31965c);
+  color: white;
+  padding: 35px;
+  border-radius: 18px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  max-width: 550px;
+  color: #e0f2e5;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.hero button {
+  margin-top: 20px;
+  background: white;
+  color: var(--green);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 13px;
+  border: 1px solid #e9eee9;
+  box-shadow: 0 3px 12px #173d2b08;
+}
+
+.card-icon {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.card small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.value {
+  font-size: 27px;
+  font-weight: 750;
+  margin: 8px 0;
+}
+
+.good {
+  color: #24834f;
+  font-size: 12px;
+}
+
+/* CONTENT */
+.section {
+  display: none;
+  animation: fade .3s;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes fade {
+  from {opacity: 0; transform: translateY(5px)}
+  to {opacity: 1; transform: translateY(0)}
+}
+
+.section-title {
+  margin: 28px 0 18px;
+  font-size: 20px;
+}
+
+.panel {
+  background: white;
+  border: 1px solid #e9eee9;
+  padding: 23px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.panel h3 {
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* CHART */
+.chart {
+  width: 100%;
+  height: 220px;
+}
+
+/* CONTROL */
+.control-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 0;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.control-row:last-child {
+  border: none;
+}
+
+.control-row p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.btn {
+  border: none;
+  background: var(--green);
+  color: white;
+  padding: 10px 17px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn.off {
+  background: #dce4de;
+  color: #425449;
+}
+
+.btn.secondary {
+  background: #e6f3e9;
+  color: var(--green);
+}
+
+select {
+  padding: 10px;
+  border: 1px solid #dce5dd;
+  border-radius: 8px;
+}
+
+/* TABLE */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px 10px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+th {
+  color: var(--muted);
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.about-box {
+  background: #eaf5ed;
+  padding: 23px;
+  border-radius: 12px;
+}
+
+.about-box h3 {
+  margin-bottom: 10px;
+  color: var(--green);
+}
+
+.about-box p {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px 10px;
+  font-size: 12px;
+}
+
+.notification {
+  padding: 15px;
+  background: #eaf5ed;
+  border-radius: 9px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+@media(max-width: 950px) {
+  .grid {grid-template-columns: repeat(2, 1fr)}
+}
+
+@media(max-width: 650px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 14px;
+  }
+
+  .logo {
+    margin-bottom: 12px;
+  }
+
+  .menu-title {display:none}
+
+  .nav-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 5px;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    padding: 10px;
+  }
+
+  .layout {
+    display: block;
+  }
+
+  .main {
+    margin: 0;
+    width: 100%;
+    padding: 18px;
+  }
+
+  .grid {grid-template-columns: repeat(2, 1fr)}
+  .about-grid {grid-template-columns: 1fr}
+  .hero h1 {font-size: 24px}
+  .topbar h2 {font-size: 19px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="logo">
+    <span>🌱</span> SIRAMIX
+  </div>
+
+  <div class="menu-title">MENU UTAMA</div>
+
+  <div class="nav-list">
+    <div class="nav-item active" onclick="showPage('home',this)">🏠 Beranda</div>
+    <div class="nav-item" onclick="showPage('dashboard',this)">📊 Dashboard</div>
+    <div class="nav-item" onclick="showPage('irigasi',this)">💧 Irigasi</div>
+    <div class="nav-item" onclick="showPage('pupuk',this)">🌿 Pemupukan</div>
+    <div class="nav-item" onclick="showPage('riwayat',this)">📋 Riwayat</div>
+    <div class="nav-item" onclick="showPage('notifikasi',this)">🔔 Notifikasi</div>
+    <div class="nav-item" onclick="showPage('about',this)">ℹ️ Tentang Kami</div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+<div class="topbar">
+  <div>
+    <h2 id="pageTitle">Beranda</h2>
+    <p>Smart Fertilizer System Monitoring System</p>
+  </div>
+  <div class="status">● SISTEM AKTIF</div>
+</div>
+
+<!-- HOME -->
+<section class="section active" id="home">
+
+  <div class="hero">
+    <h1>Pertanian Cerdas, Masa Depan Berkualitas 🌱</h1>
+    <p>
+      SIRAMIX merupakan inovasi pertanian berbasis teknologi
+      yang mengintegrasikan sistem irigasi otomatis dan pemupukan
+      otomatis untuk meningkatkan efisiensi penggunaan air
+      dan nutrisi tanaman.
+    </p>
+    <button onclick="showPage('dashboard',document.querySelectorAll('.nav-item')[1])">
+      Lihat Dashboard →
+    </button>
+  </div>
+
+  <h2 class="section-title">Fitur Unggulan</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">💧</div>
+      <h3>Irigasi Otomatis</h3>
+      <p><small>Penyiraman berdasarkan kondisi kelembapan tanah.</small></p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🌿</div>
+      <h3>Pemupukan Otomatis</h3>
+      <p><small>Pemberian nutrisi tanaman berdasarkan parameter yang ditentukan.</small></p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📡</div>
+      <h3>Monitoring Sensor</h3>
+      <p><small>Pemantauan kondisi lahan melalui sensor dan mikrokontroler.</small></p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h3>Data Real-Time</h3>
+      <p><small>Informasi kondisi lahan dalam satu dashboard.</small></p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Tujuan Inovasi</h3>
+    <p style="line-height:1.8;font-size:14px">
+      Mengembangkan sistem pertanian cerdas yang mampu mengoptimalkan
+      pemberian air dan pupuk berdasarkan kebutuhan tanaman,
+      sehingga proses budidaya menjadi lebih terukur, efisien,
+      dan tepat sasaran.
+    </p>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="section" id="dashboard">
+
+  <h2 class="section-title">Monitoring Kondisi Lahan</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">💧</div>
+      <small>Kelembapan Tanah</small>
+      <div class="value" id="moisture">65%</div>
+      <div class="good">● Kondisi Normal</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🌡️</div>
+      <small>Suhu Lingkungan</small>
+      <div class="value" id="temperature">28°C</div>
+      <div class="good">● Data Simulasi</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">💦</div>
+      <small>Status Irigasi</small>
+      <div class="value" id="waterStatus">OFF</div>
+      <div class="good">● Sistem Siaga</div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🌱</div>
+      <small>Status Pemupukan</small>
+      <div class="value" id="fertStatus">OFF</div>
+      <div class="good">● Sistem Siaga</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h3>Grafik Kelembapan Tanah</h3>
+    <canvas id="chart" class="chart"></canvas>
+  </div>
+
+  <div class="panel">
+    <h3>Informasi Sistem</h3>
+    <p style="font-size:14px;line-height:1.8">
+      Sistem monitoring menampilkan data kondisi lingkungan
+      dan status perangkat. Data pada versi awal ini masih
+      berupa simulasi untuk demonstrasi website.
+    </p>
+  </div>
+
+</section>
+
+<!-- IRIGASI -->
+<section class="section" id="irigasi">
+
+  <h2 class="section-title">Kontrol Sistem Irigasi</h2>
+
+  <div class="panel">
+    <h3>Pengaturan Penyiraman</h3>
+
+    <div class="control-row">
+      <div>
+        <b>Mode Irigasi</b>
+        <p>Pengaturan sistem otomatis atau manual</p>
+      </div>
+      <select id="waterMode" onchange="changeMode('water')">
+        <option value="auto">Otomatis</option>
+        <option value="manual">Manual</option>
+      </select>
+    </div>
+
+    <div class="control-row">
+      <div>
+        <b>Pompa Air</b>
+        <p id="waterText">Pompa dalam keadaan mati</p>
+      </div>
+      <button class="btn off" id="waterButton"
+        onclick="toggleWater()">HIDUPKAN</button>
+    </div>
+
+    <div class="control-row">
+      <div>
+        <b>Ambang Kelembapan</b>
+        <p>Batas kelembapan untuk penyiraman otomatis</p>
+      </div>
+      <input type="number" id="waterLimit" value="40"
+        min="1" max="100" style="width:75px;padding:9px">
+    </div>
+
+    <button class="btn" onclick="saveSetting('irigasi')">
+      Simpan Pengaturan
+    </button>
+  </div>
+
+</section>
+
+<!-- PEMUPUKAN -->
+<section class="section" id="pupuk">
+
+  <h2 class="section-title">Kontrol Sistem Pemupukan</h2>
+
+  <div class="panel">
+    <h3>Pengaturan Pemupukan</h3>
+
+    <div class="control-row">
+      <div>
+        <b>Mode Pemupukan</b>
+        <p>Pengaturan sistem otomatis atau manual</p>
+      </div>
+      <select id="fertMode" onchange="changeMode('fert')">
+        <option value="auto">Otomatis</option>
+        <option value="manual">Manual</option>
+      </select>
+    </div>
+
+    <div class="control-row">
+      <div>
+        <b>Pompa Pupuk</b>
+        <p id="fertText">Pompa pupuk dalam keadaan mati</p>
+      </div>
+      <button class="btn off" id="fertButton"
+        onclick="toggleFert()">HIDUPKAN</button>
+    </div>
+
+    <div class="control-row">
+      <div>
+        <b>Pengaturan Nutrisi</b>
+        <p>Parameter kebutuhan pupuk sesuai rancangan alat</p>
+      </div>
+      <span>Terukur</span>
+    </div>
+
+    <button class="btn" onclick="saveSetting('pemupukan')">
+      Simpan Pengaturan
+    </button>
+  </div>
+
+  <div class="panel">
+    <h3>Informasi Pemupukan</h3>
+    <p style="font-size:14px;line-height:1.8">
+      Sistem pemupukan dirancang untuk memberikan pupuk
+      berdasarkan parameter kebutuhan tanaman dan hasil
+      pembacaan sensor yang didukung oleh perangkat.
+    </p>
+  </div>
+
+</section>
+
+<!-- RIWAYAT -->
+<section class="section" id="riwayat">
+
+  <h2 class="section-title">Riwayat Aktivitas</h2>
+
+  <div class="panel">
+    <h3>Catatan Aktivitas Sistem</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Waktu</th>
+          <th>Aktivitas</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="history">
+        <tr>
+          <td>-</td>
+          <td>Website dibuka</td>
+          <td>Simulasi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</section>
+
+<!-- NOTIFIKASI -->
+<section class="section" id="notifikasi">
+
+  <h2 class="section-title">Notifikasi Sistem</h2>
+
+  <div class="panel">
+    <div class="notification">
+      🌱 Sistem SIRAMIX berhasil dibuka.
+    </div>
+    <div class="notification">
+      💧 Monitoring kelembapan tanah tersedia.
+    </div>
+    <div class="notification">
+      📡 Menunggu koneksi sensor ESP32.
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+
+  <h2 class="section-title">Tentang SIRAMIX</h2>
+
+  <div class="hero">
+    <h1>SIRAMIX 🌿</h1>
+    <p>
+      Integrasi Irigasi dan Pemupukan Otomatis
+      Berbasis Teknologi Pertanian Cerdas.
+    </p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-box">
+      <h3>Latar Belakang</h3>
+      <p>
+        SIRAMIX dikembangkan untuk menjawab keterbatasan
+        pengelolaan air dan pemupukan konvensional yang
+        belum sepenuhnya mempertimbangkan kebutuhan tanaman.
+      </p>
+    </div>
+
+    <div class="about-box">
+      <h3>Tujuan</h3>
+      <p>
+        Meningkatkan ketepatan pemberian air dan pupuk
+        melalui sistem otomatis yang memanfaatkan
+        sensor dan mikrokontroler.
+      </p>
+    </div>
+
+    <div class="about-box">
+      <h3>Teknologi</h3>
+      <p>
+        Sistem dirancang menggunakan ESP32, sensor,
+        relay, pompa air, serta perangkat pendukung
+        untuk mengatur irigasi dan pemupukan.
+      </p>
+    </div>
+
+    <div class="about-box">
+      <h3>Manfaat</h3>
+      <p>
+        Membantu meningkatkan efisiensi penggunaan
+        sumber daya, mengurangi pemberian air dan pupuk
+        yang tidak tepat, serta mendukung pertanian modern.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 SIRAMIX | Smart Fertilizer System Innovation
+  <br><br>
+  Teknologi untuk Pertanian Masa Depan 🌱
+</footer>
+
+</main>
+</div>
+
+<script>
+
+// NAVIGASI
+function showPage(page, element) {
+  document.querySelectorAll('.section').forEach(s =>
+    s.classList.remove('active'));
+
+  document.getElementById(page).classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n =>
+    n.classList.remove('active'));
+
+  if(element) element.classList.add('active');
+
+  const titles = {
+    home:'Beranda',
+    dashboard:'Dashboard Monitoring',
+    irigasi:'Kontrol Irigasi',
+    pupuk:'Kontrol Pemupukan',
+    riwayat:'Riwayat Aktivitas',
+    notifikasi:'Notifikasi',
+    about:'Tentang SIRAMIX'
+  };
+
+  document.getElementById('pageTitle').innerText = titles[page];
+}
+
+// STATUS SISTEM (SIMULASI)
+let waterOn = false;
+let fertOn = false;
+
+function addHistory(activity, status) {
+  const table = document.getElementById('history');
+  const row = table.insertRow(0);
+
+  row.innerHTML = `
+    <td>${new Date().toLocaleTimeString('id-ID')}</td>
+    <td>${activity}</td>
+    <td>${status}</td>
+  `;
+}
+
+function toggleWater() {
+  if(document.getElementById('waterMode').value !== 'manual') {
+    alert('Ubah mode irigasi menjadi Manual terlebih dahulu.');
+    return;
+  }
+
+  waterOn = !waterOn;
+
+  document.getElementById('waterStatus').innerText =
+    waterOn ? 'ON' : 'OFF';
+
+  document.getElementById('waterText').innerText =
+    waterOn ? 'Pompa sedang aktif' : 'Pompa dalam keadaan mati';
+
+  const button = document.getElementById('waterButton');
+  button.innerText = waterOn ? 'MATIKAN' : 'HIDUPKAN';
+  button.classList.toggle('off', !waterOn);
+
+  addHistory('Pengaturan pompa air', waterOn ? 'ON' : 'OFF');
+}
+
+function toggleFert() {
+  if(document.getElementById('fertMode').value !== 'manual') {
+    alert('Ubah mode pemupukan menjadi Manual terlebih dahulu.');
+    return;
+  }
+
+  fertOn = !fertOn;
+
+  document.getElementById('fertStatus').innerText =
+    fertOn ? 'ON' : 'OFF';
+
+  document.getElementById('fertText').innerText =
+    fertOn ? 'Pompa pupuk sedang aktif' : 'Pompa pupuk mati';
+
+  const button = document.getElementById('fertButton');
+  button.innerText = fertOn ? 'MATIKAN' : 'HIDUPKAN';
+  button.classList.toggle('off', !fertOn);
+
+  addHistory('Pengaturan pompa pupuk', fertOn ? 'ON' : 'OFF');
+}
+
+function changeMode(type) {
+  const mode = document.getElementById(
+    type === 'water' ? 'waterMode' : 'fertMode'
+  ).value;
+
+  if(type === 'water') {
+    if(mode === 'auto' && waterOn) {
+      waterOn = false;
+      document.getElementById('waterStatus').innerText = 'OFF';
+      document.getElementById('waterText').innerText = 'Pompa dalam keadaan mati';
+      document.getElementById('waterButton').innerText = 'HIDUPKAN';
+      document.getElementById('waterButton').classList.add('off');
+    }
+  } else {
+    if(mode === 'auto' && fertOn) {
+      fertOn = false;
+      document.getElementById('fertStatus').innerText = 'OFF';
+      document.getElementById('fertText').innerText = 'Pompa pupuk mati';
+      document.getElementById('fertButton').innerText = 'HIDUPKAN';
+      document.getElementById('fertButton').classList.add('off');
+    }
+  }
+}
+
+function saveSetting(type) {
+  alert('Pengaturan ' + type + ' berhasil disimpan pada simulasi website.');
+  addHistory('Pengaturan ' + type, 'Tersimpan');
+}
+
+// GRAFIK SIMULASI
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+
+function drawChart() {
+  const width = canvas.clientWidth;
+  const height = 220;
+  const ratio = window.devicePixelRatio || 1;
+
+  canvas.width = width * ratio;
+  canvas.height = height * ratio;
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+
+  const values = [48,55,51,63,60,68,65,72,65,70,65];
+  const step = width / (values.length - 1);
+
+  ctx.clearRect(0,0,width,height);
+
+  ctx.strokeStyle = '#e5eee7';
+  ctx.lineWidth = 1;
+
+  for(let i=0;i<5;i++) {
+    const y = 15 + i*43;
+    ctx.beginPath();
+    ctx.moveTo(0,y);
+    ctx.lineTo(width,y);
+    ctx.stroke();
+  }
+
+  ctx.beginPath();
+  values.forEach((v,i) => {
+    const x = i*step;
+    const y = height - 20 - (v/100)*(height-45);
+
+    if(i===0) ctx.moveTo(x,y);
+    else ctx.lineTo(x,y);
+  });
+
+  ctx.strokeStyle = '#238451';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  values.forEach((v,i) => {
+    const x = i*step;
+    const y = height - 20 - (v/100)*(height-45);
+
+    ctx.beginPath();
+    ctx.arc(x,y,3,0,Math.PI*2);
+    ctx.fillStyle = '#238451';
+    ctx.fill();
+  });
+}
+
+drawChart();
+window.addEventListener('resize',drawChart);
+
+// DATA SIMULASI
+// Data ini belum berasal dari sensor ESP32.
+
+</script>
+</body>
+</html>
